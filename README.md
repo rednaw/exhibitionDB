@@ -76,7 +76,6 @@ What follows is a breakdown of the various technologies and projects on which th
 - [GitHub](https://github.com/): Version control, this project. Stores code and Filemaker dumps. 
 - [Dependabot](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/about-dependabot-version-updates): Automated dependency updates
 
-
 ### Manual data source
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Expert.iuml) 
 - [Filemaker](https://www.claris.com/filemaker/pro/): Manual data entry
