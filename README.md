@@ -8,12 +8,12 @@
 
 ## Art exhibitions database
 
-This project generates the web app deployed at https://rednaw.github.io/exhibitionDB/. This app offers a unified, fast, and reactive view on a large dataset that is created by combining data from various sources. 
-- Locally produced data from Filemaker or Excel exports.
-- Data freely provided by various art institutions.
-  - [Metropolitan Museum API](https://metmuseum.github.io/)
-  - [The Art Institute of Chicago API](https://api.artic.edu/docs/)
-  - [Rijksmuseum API](https://data.rijksmuseum.nl/)
+With this app you can create your own art gallery with artworks from various museums.
+- [Metropolitan Museum API](https://metmuseum.github.io/)
+- [The Art Institute of Chicago API](https://api.artic.edu/docs/)
+- [Rijksmuseum API](https://data.rijksmuseum.nl/)
+
+The web app is deployed at https://rednaw.github.io/exhibitionDB/.
 
 ## Implementation
 
