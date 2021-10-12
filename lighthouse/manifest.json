@@ -1,0 +1,14 @@
+[
+  {
+    "url": "http://localhost:40337/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/fresh/fresh/lighthouse/report.html",
+    "jsonPath": "/home/runner/work/fresh/fresh/lighthouse/report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

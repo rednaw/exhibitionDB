@@ -1,0 +1,70 @@
+name: Main
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 Checkout project
+        uses: actions/checkout@v2
+
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: 🔨 Download Node dependencies
+        run: |
+          npm install
+
+      - name: 🧹 Run static code analysis
+        run: |
+          npm run lint
+
+      - name: 🔨 Build Svelte project
+        run: |
+          npm run build
+
+      - name: Get database
+        uses: actions/checkout@v2
+        with:
+          ref: data-branch
+          path: data
+
+      - name: Download extra runtime dependencies
+        run: |
+          curl -s --location --output build/sql-wasm.js https://unpkg.com/sql.js@latest/dist/sql-wasm.js
+          curl -s --location --output build/sql-wasm.wasm https://unpkg.com/sql.js@latest/dist/sql-wasm.wasm
+          curl -s --location --output build/tabulator.min.css.map https://unpkg.com/tabulator-tables@latest/dist/css/tabulator.min.css.map
+
+      - name: 💎 Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - name: 🔨 Build Jekyll site for Lighthouse run
+        uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
+          format_output: true
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.8.x
+          lhci autorun
+
+      - name: 🔨 Build Jekyll site for deployment
+        uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
+          format_output: true
+          custom_opts: --baseurl /exhibitionDB
+
+      - name: 🚀 Deploy to production
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: _site
