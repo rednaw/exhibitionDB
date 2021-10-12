@@ -1,7 +1,7 @@
 @startuml Pipeline
 
 rectangle "Deployment pipeline" {
-  component "Build app -> Get data -> Test -> Deploy"
+  component "Build app -> Add database -> Test -> Deploy"
 }
 
 @enduml
