@@ -19,7 +19,7 @@ The web app is deployed at https://rednaw.github.io/exhibitionDB/.
 
 The main purpose of this project is to investigate how to build a web application that
 - follows the [Jamstack architecture best practices](https://jamstack.org/) (in a nutshell: full CI/CD and no server side database).
-- handles a lot (tens of megabytes) of structured data. (read only, in the browser since there is no server side database)
+- handles a lot (tens of megabytes) of structured data.
 - performs very well according to measurement tools like [Lighthouse](https://developers.google.com/web/tools/lighthouse). 
 
 What follows is a diagram of the deployment architecture.
