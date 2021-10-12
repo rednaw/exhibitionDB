@@ -55,7 +55,7 @@ What follows is a breakdown of the various technologies and projects on which th
 - [curl](https://curl.se/): Command line tool and library for transferring data with URLs
 - [csv-to-sqlite](https://github.com/zblesk/csv-to-sqlite):  A script that copies CSV files into a SQLite database. 
 #### Code pipeline
-![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/CodePipeline.iuml) 
+![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/DeployPipeline.iuml) 
 - [npm](https://www.npmjs.com/): Javascript dependencymanager and script runner.
 - [Svelte](https://svelte.dev/): Static Site Generator for reactive user interface.
 - [Rollup](https://rollupjs.org/): Bundle generated html, css and javascript to a small number of compressed files.
