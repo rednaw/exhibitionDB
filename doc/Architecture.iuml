@@ -32,8 +32,8 @@ rectangle "Data pipeline" as DataPipeline {
   component "Collect data -> Create database" as DataGenerator 
 }
 
-rectangle "Code pipeline" as CodePipeline {
-  component "Build -> Test -> Deploy" as CodeGenerator 
+rectangle "Deployment pipeline" as DeploymentPipeline {
+  component "Build app -> Get data -> Test -> Deploy" as CodeGenerator 
 }
 
 rectangle "Delivery Network" as CDN {

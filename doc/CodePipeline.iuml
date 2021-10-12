@@ -1,7 +1,0 @@
-@startuml Pipeline
-
-rectangle "Code Pipeline" {
-  component "Build -> Test -> Deploy" 
-}
-
-@enduml
