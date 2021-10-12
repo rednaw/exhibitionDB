@@ -1,0 +1,8 @@
+@startuml Delivery
+
+rectangle "Delivery Network" {
+  file "HTML\nJavascript\nCSS"
+  file SQLite
+}
+
+@enduml

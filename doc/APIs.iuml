@@ -1,0 +1,7 @@
+@startuml APIs
+
+interface "Art Institute of Chicago"
+interface "Metropolitan"
+interface "Rijksmuseum"
+
+@enduml

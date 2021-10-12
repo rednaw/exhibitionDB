@@ -1,0 +1,21 @@
+# Jekyll
+.jekyll-cache
+.jekyll-metadata
+_site
+
+# Svelte & Node
+build
+node_modules
+
+# Lighthouse
+.lighthouseci
+lighthouse
+
+# Mac finder
+.DS_Store
+
+# ExhibitionDB database
+data
+_artic
+_met
+_rijks

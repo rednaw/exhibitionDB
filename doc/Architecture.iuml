@@ -1,0 +1,66 @@
+@startuml Deployment
+
+actor Wander as Developer
+actor Salvo as Expert
+actor User
+
+rectangle Mac as DeveloperC {
+  component VisualStudio
+}
+
+rectangle Mac as ExpertC {
+  database FileMaker
+}
+
+rectangle Browser as UserC {
+  package "www.exhibitiondb.org" as Site {
+    component Application
+    database SQLite as Database
+  }
+}
+
+interface "Rijksmuseum" as Rijksmuseum
+interface "Metropolitan" as Metropolitan
+interface "Art Institute of Chicago" as Artic
+
+rectangle "Version Control" as CodeGitHub {
+  file CSV
+  file Code
+}
+
+rectangle "Data pipeline" as DataPipeline {
+  component "Collect data -> Create database" as DataGenerator 
+}
+
+rectangle "Code pipeline" as CodePipeline {
+  component "Build -> Test -> Deploy" as CodeGenerator 
+}
+
+rectangle "Delivery Network" as CDN {
+  file "HTML\nJavascript\nCSS" as Storage
+  file SQLite
+}
+
+FileMaker <-[#blue]- Expert : Enter data
+VisualStudio <-[#red]- Developer : Develop code
+User <-[#black]-> Site : Visit site
+
+Code <-[#red]- VisualStudio : Push
+CSV <-[#blue]- FileMaker : Push
+Application <-[#red]-- Storage : Load application
+Database <-[#blue]-- SQLite : Load database
+
+Storage <-[#red]- CodeGenerator : Deploy
+SQLite <-[#blue]- CodeGenerator : Deploy
+DataGenerator -[#blue]> CodeGenerator : Get database
+CodeGenerator <-[#red]- Code : Publish
+DataGenerator <-[#blue]- CSV : Publish
+
+Artic -[#blue]-> DataGenerator : Get bulk data
+Application <-[#blue]-- Artic : Get selected data
+Metropolitan -[#blue]-> DataGenerator : Get bulk data
+Application <-[#blue]-- Metropolitan : Get selected data
+Rijksmuseum -[#blue]-> DataGenerator : Get bulk data
+Application <-[#blue]-- Rijksmuseum : Get selected data
+
+@enduml

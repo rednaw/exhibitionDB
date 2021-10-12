@@ -1,0 +1,10 @@
+@startuml User
+
+rectangle Browser {
+  package "www.exhibitiondb.org" {
+    component Application
+    database SQLite as Database
+  }
+}
+
+@enduml

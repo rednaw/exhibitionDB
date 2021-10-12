@@ -1,0 +1,15 @@
+url: https://rednaw.github.io/
+baseurl: ""
+exclude:
+  - bin
+  - doc
+  - src
+  - Rakefile
+  - junit.xml
+  - lighthouserc.yaml
+  - lighthouse_results
+  - .lighthouseci
+  - package.json
+  - package-lock.json
+  - rollup.config.js
+  - README.md

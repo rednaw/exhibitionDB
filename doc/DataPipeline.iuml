@@ -1,0 +1,7 @@
+@startuml Pipeline
+
+rectangle "Data Pipeline" {
+  component "Collect data -> Create database" 
+}
+
+@enduml
