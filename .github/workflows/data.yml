@@ -1,13 +1,13 @@
 name: Data
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "15 21 * * *"
+    - cron: "0 22 * * *"
   push:
     branches:
       - main
     paths:
       - _data/**
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
