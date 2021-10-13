@@ -3,14 +3,14 @@ DELETE FROM collection
   WHERE objectImage = '' OR objectCreator = '' OR objectCreator = 'anonymous';
 
 CREATE TABLE IF NOT EXISTS tmpTable(
-  objectTitle TEXT,
-  objectType TEXT,
-  objectCreator TEXT,
-  objectCreationDate TEXT,
-  objectImage TEXT
+  title TEXT,
+  type TEXT,
+  artist TEXT,
+  date TEXT,
+  image_url TEXT
 );
 
-INSERT INTO tmpTable(objectTitle,objectType,objectCreator,objectCreationDate,objectImage)
+INSERT INTO tmpTable(title,type,artist,date,image_url)
   SELECT objectTitle,objectType,objectCreator,objectCreationDate,objectImage FROM collection;
 
 DROP TABLE collection;

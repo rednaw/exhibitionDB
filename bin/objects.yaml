@@ -12,11 +12,11 @@ Metropolitan:
 
 Rijksmuseum:
   collection:
-    - objectTitle # title
-    - objectType # type
-    - objectCreator # artist
-    - objectCreationDate # date
-    - objectImage #image
+    - title
+    - type
+    - artist
+    - date
+    - image_url
 
 Generic:
   objects:

@@ -6,7 +6,7 @@
 
 	async function inGallery(metadata) {
 		const storedValue = await gallery.get();
-		return storedValue.includes(metadata.objectImage);
+		return storedValue.includes(metadata.image_url);
 	}
 
 	function toggle(toggleValue, imageUrl) {
@@ -24,7 +24,7 @@
 	<div>
 		<Toggle
 			hideLabel="true"
-			on:toggle={(e) => toggle(e.detail, object.objectImage)}
+			on:toggle={(e) => toggle(e.detail, object.image_url)}
 			toggled={inGallery}
 			on="In gallery"
 			off="Not in gallery"
@@ -33,24 +33,24 @@
 
 	<div class="columns">
 		<div class="left_column">
-			<img src={object.objectImage} alt={object.objectTitle} width="400" />
+			<img src={object.image_url} alt={object.title} width="400" />
 		</div>
 		<div class="right_column">
 			<p>
 				<strong>Title:</strong>
-				{object.objectTitle}
+				{object.title}
 			</p>
 			<p>
 				<strong>Artist:</strong>
-				{object.objectCreator}
+				{object.artist}
 			</p>
 			<p>
 				<strong>Type:</strong>
-				{object.objectType}
+				{object.type}
 			</p>
 			<p>
 				<strong>Date:</strong>
-				{object.objectCreationDate}
+				{object.date}
 			</p>
 		</div>
 	</div>
