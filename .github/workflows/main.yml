@@ -1,4 +1,4 @@
-name: Main
+name: Deploy application
 on:
   workflow_dispatch:
   push:
@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - _data/**
   workflow_run:
-    workflows: ["Data"]
+    workflows: ['Data']
     types:
       - completed
 jobs:

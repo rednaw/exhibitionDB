@@ -1,4 +1,4 @@
-name: Branch
+name: Run tests on branch
 on:
   workflow_dispatch:
   push:
