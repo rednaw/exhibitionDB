@@ -1,9 +1,9 @@
 Metropolitan:
   MetObjects:
-    - Object_ID # id
-    - Title # title
-    - Artist_Display_Name # artist
-    - Object_Date # date
+    - id
+    - title
+    - artist
+    - date
   rest:
     - primaryImageSmall # image
     - medium # type

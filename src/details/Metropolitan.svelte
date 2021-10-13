@@ -12,7 +12,7 @@
 	let metadata = async function (object) {
 		let result =
 			'https://collectionapi.metmuseum.org/public/collection/v1/objects/' +
-			object.Object_ID;
+			object.id;
 		result = await fetch(result);
 		return await result.json();
 	};
@@ -44,24 +44,20 @@
 
 		<div class="columns">
 			<div class="left_column">
-				<img
-					src={metadata.primaryImageSmall}
-					alt={metadata.title}
-					width="400"
-				/>
+				<img src={metadata.primaryImageSmall} alt={object.title} width="400" />
 			</div>
 			<div class="right_column">
 				<p>
 					<strong>Title:</strong>
-					{metadata.title}
+					{object.title}
 				</p>
 				<p>
 					<strong>Artist:</strong>
-					{metadata.artistDisplayName}
+					{object.artist}
 				</p>
 				<p>
 					<strong>Date:</strong>
-					{metadata.objectDate}
+					{object.date}
 				</p>
 				<p>
 					<strong>Medium:</strong>
