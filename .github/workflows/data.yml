@@ -1,7 +1,7 @@
 name: Create database
 on:
   schedule:
-    - cron: '20 15 * * *'
+    - cron: '25 15 * * *'
   push:
     branches:
       - main
