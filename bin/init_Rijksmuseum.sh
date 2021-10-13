@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WORKSPACE=_data/workspace/rijksmuseum
+WORKSPACE=_workspace/rijksmuseum
 
 echo Download bulk data from the public Rijksmuseum API
 mkdir -p $WORKSPACE

@@ -3,7 +3,7 @@ require 'fileutils'
 require 'json'
 require 'open3'
 
-WORKSPACE = '_data/workspace/artic'
+WORKSPACE = '_workspace/artic'
 FileUtils.mkdir_p(WORKSPACE)
 
 def run(cmd)

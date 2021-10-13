@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WORKSPACE=_data/workspace/metropolitan
+WORKSPACE=_workspace/metropolitan
 
 echo "Download bulk data from the public Metropolitan Museum of Art API"
 mkdir -p $WORKSPACE
