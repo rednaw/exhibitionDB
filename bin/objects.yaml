@@ -3,12 +3,10 @@ Metropolitan:
     - id
     - title
     - artist
+    - type
     - date
   rest:
     - primaryImageSmall # image
-    - medium # type
-    - objectWikidata_URL
-    - artistWikidata_URL
 
 Rijksmuseum:
   collection:

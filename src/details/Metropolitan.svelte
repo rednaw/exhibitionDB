@@ -27,10 +27,10 @@
 </script>
 
 {#await metadata(object)}
-	<p>...loading object metadata</p>
+	<p>...loading</p>
 {:then metadata}
 	{#await inGallery(metadata)}
-		<p>...loading gallery</p>
+		<p>...loading</p>
 	{:then inGallery}
 		<div>
 			<Toggle
@@ -56,35 +56,15 @@
 					{object.artist}
 				</p>
 				<p>
+					<strong>Type:</strong>
+					{object.type}
+				</p>
+				<p>
 					<strong>Date:</strong>
 					{object.date}
 				</p>
-				<p>
-					<strong>Medium:</strong>
-					{metadata.medium}
-				</p>
-				<p>
-					<strong
-						><a
-							href={metadata.objectWikidata_URL}
-							target="_blank"
-							rel="noreferrer">Object Wiki</a
-						></strong
-					>
-				</p>
-				<p>
-					<strong
-						><a
-							href={metadata.artistWikidata_URL}
-							target="_blank"
-							rel="noreferrer">Artist Wiki</a
-						></strong
-					>
-				</p>
 			</div>
 		</div>
-	{:catch error}
-		<p style="color: red">{error.message}</p>
 	{/await}
 {:catch error}
 	<p style="color: red">{error.message}</p>

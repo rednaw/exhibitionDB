@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS tmpTable(
   image_url TEXT
 );
 
-INSERT INTO tmpTable(title,type,artist,date,image_url)
-  SELECT objectTitle,objectType,objectCreator,objectCreationDate,objectImage FROM collection;
+INSERT INTO tmpTable(title, type, artist, date, image_url)
+  SELECT objectTitle, objectType, objectCreator, objectCreationDate, objectImage FROM collection;
 
 DROP TABLE collection;
 
