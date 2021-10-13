@@ -57,7 +57,7 @@
 				</p>
 				<p>
 					<strong>Artist:</strong>
-					{metadata.artistDisplayName}, {metadata.artistDisplayBio}
+					{metadata.artistDisplayName}
 				</p>
 				<p>
 					<strong>Date:</strong>
