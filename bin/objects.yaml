@@ -1,0 +1,28 @@
+Metropolitan:
+  MetObjects:
+    - Object_ID # id
+    - Title # title
+    - Artist_Display_Name # artist
+    - Object_Date # date
+  rest:
+    - primaryImageSmall # image
+    - medium # type
+    - objectWikidata_URL
+    - artistWikidata_URL
+
+Rijksmuseum:
+  collection:
+    - objectTitle # title
+    - objectType # type
+    - objectCreator # artist
+    - objectCreationDate # date
+    - objectImage #image
+
+Generic:
+  objects:
+    - id # optional, needed for rest api
+    - title
+    - artist
+    - type
+    - date
+    - image_url
