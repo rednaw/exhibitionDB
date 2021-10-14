@@ -19,11 +19,11 @@ def download()
   run("curl -s -o #{WORKSPACE}/artic-api-data.tar.bz2 https://artic-api-data.s3.amazonaws.com/artic-api-data.tar.bz2")
 end
 
-def to_csv(table, columns)
+def to_sqlite3(table, columns)
   puts "Unpack table data for #{table}" 
   run("tar -C #{WORKSPACE} -xf #{WORKSPACE}/artic-api-data.tar.bz2 artic-api-data/json/#{table}")
   
-  puts "Create table #{table}"
+  puts "Create CSV file for #{table}"
   csv = []
   header = []
 
@@ -49,11 +49,15 @@ def to_csv(table, columns)
     e.join("|")
   }.join($/))
 
+  puts "Create SQLite3 database for #{table}"
   run("csv-to-sqlite -f data/#{table}.csv -o data/Artic.sqlite3 --drop-tables --delimiter '|'")
   FileUtils.rm_f("data/#{table}.csv")
 end
 
 download()
-to_csv('exhibitions', ['id', 'title', 'image_id', 'aic_start_at','aic_end_at'])
+to_sqlite3('exhibitions', ['id', 'title', 'image_id', 'aic_start_at','aic_end_at'])
+to_sqlite3('artworks', ['title', 'artist_title', 'classification_title', 'date_display', 'image_id'])
+
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')
+
 run('date > data/Artic.timestamp')

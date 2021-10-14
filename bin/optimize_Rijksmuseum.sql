@@ -4,17 +4,14 @@ DELETE FROM collection
 
 CREATE TABLE IF NOT EXISTS tmpTable(
   title TEXT,
-  type TEXT,
   artist TEXT,
+  type TEXT,
   date TEXT,
   image_url TEXT
 );
-
-INSERT INTO tmpTable(title, type, artist, date, image_url)
-  SELECT objectTitle, objectType, objectCreator, objectCreationDate, objectImage FROM collection;
-
+INSERT INTO tmpTable(title, artist, type, date, image_url)
+  SELECT objectTitle, objectCreator, objectType, objectCreationDate, objectImage FROM collection;
 DROP TABLE collection;
-
 ALTER TABLE tmpTable RENAME TO collection; 
 
 VACUUM;

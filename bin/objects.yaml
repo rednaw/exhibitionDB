@@ -1,3 +1,11 @@
+Artic:
+  artworks:
+    - title
+    - artist
+    - type
+    - date
+    - image_url
+
 Metropolitan:
   MetObjects:
     - id
