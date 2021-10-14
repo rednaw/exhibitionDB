@@ -4,31 +4,22 @@ Artic:
     - artist
     - type
     - date
-    - image_url
+    - image_id
 
 Metropolitan:
   MetObjects:
-    - id
+    - id # For query rest api
     - title
     - artist
     - type
     - date
   rest:
-    - primaryImageSmall # image
+    - primaryImageSmall
 
 Rijksmuseum:
   collection:
     - title
     - type
     - artist
-    - date
-    - image_url
-
-Generic:
-  objects:
-    - id # optional, needed for rest api
-    - title
-    - artist
-    - type
     - date
     - image_url
