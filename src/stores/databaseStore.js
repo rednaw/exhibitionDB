@@ -8,6 +8,10 @@ export const queries = readable(null, function start(set) {
       'query': 'select * from exhibitions',
       'database': 'Artic'
     },
+    'Artic2': {
+      'query': 'select * from artworks',
+      'database': 'Artic'
+    },
     'Metropolitan': {
       'query': 'select * from MetObjects',
       'database': 'Metropolitan'
