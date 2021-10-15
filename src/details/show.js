@@ -1,7 +1,7 @@
 import ExhibitionDB from './ExhibitionDB.svelte'
 import Metropolitan from './Metropolitan.svelte'
 import Artic from './Artic.svelte'
-import Rijksmuseum from './Rijksmuseum.svelte'
+import Artwork from './Artwork.svelte'
 
 export function showPopup(open, title, data) {
 	switch (title) {
@@ -14,8 +14,11 @@ export function showPopup(open, title, data) {
 		case 'Artic':
 			open(Artic, { object: data })
 			break
+		case 'Artic2':
+			open(Artwork, { object: data })
+			break
 		case 'Rijksmuseum':
-			open(Rijksmuseum, { object: data })
+			open(Artwork, { object: data })
 			break
 	}
 }

@@ -10,9 +10,7 @@
 	}
 
 	let metadata = async function (object) {
-		let result = 'https://api.artic.edu/api/v1/exhibitions/' + object.id;
-		result = await fetch(result);
-		return await result.json();
+		return await object;
 	};
 
 	function toggle(toggleValue, imageUrl) {
@@ -49,20 +47,20 @@
 					<strong>Title:</strong>
 					{object.title}
 				</p>
+				<p>
+					<strong>Artist:</strong>
+					{object.artist}
+				</p>
+				<p>
+					<strong>Type:</strong>
+					{object.type}
+				</p>
+				<p>
+					<strong>Date:</strong>
+					{object.date}
+				</p>
 			</div>
 		</div>
-		{#if metadata.data.short_description}
-			<p>
-				<strong>Short description:</strong>
-				{metadata.data.short_description}
-			</p>
-		{/if}
-		{#if metadata.data.description}
-			<p>
-				<strong>Description:</strong>
-				{metadata.data.description}
-			</p>
-		{/if}
 	{/await}
 {:catch error}
 	<p style="color: red">{error.message}</p>
