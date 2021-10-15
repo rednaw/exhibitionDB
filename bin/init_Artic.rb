@@ -56,7 +56,7 @@ end
 
 download()
 to_sqlite3('exhibitions', ['id', 'title', 'image_id', 'aic_start_at','aic_end_at'])
-to_sqlite3('artworks', ['title', 'artist_title', 'classification_title', 'date_display', 'image_id'])
+to_sqlite3('artworks', ['id', 'title', 'artist_title', 'classification_title', 'date_display', 'image_id'])
 
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')
 
