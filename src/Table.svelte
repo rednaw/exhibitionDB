@@ -88,7 +88,7 @@ Group By
 <div bind:this={tableComponent} />
 <br /><br />
 <strong>Query: </strong>
-<pre>{$query  ? format($query) : ''}</pre>
+<pre>{$query ? format($query['query']) : ''}</pre>
 
 <style>
 </style>
