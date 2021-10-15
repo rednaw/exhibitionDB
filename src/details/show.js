@@ -1,5 +1,5 @@
 import ExhibitionDB from './ExhibitionDB.svelte'
-import Artwork from './Artwork.svelte'
+import Dialog from './Dialog.svelte'
 
 export function showPopup(open, title, data) {
 	switch (title) {
@@ -7,25 +7,25 @@ export function showPopup(open, title, data) {
 			open(ExhibitionDB, { object: data })
 			break
 		case 'Artic':
-			open(Artwork, {
+			open(Dialog, {
 				object: data,
 				metadata: () => articMetadata(data)
 			})
 			break
 		case 'Metropolitan':
-			open(Artwork, {
+			open(Dialog, {
 				object: data,
 				metadata: () => metropolitanMetadata(data)
 			})
 			break
 		case 'Artic2':
-			open(Artwork, {
+			open(Dialog, {
 				object: data,
 				metadata: () => defaultMetadata(data)
 			})
 			break
 		case 'Rijksmuseum':
-			open(Artwork, {
+			open(Dialog, {
 				object: data,
 				metadata: () => defaultMetadata(data)
 			})
