@@ -1,5 +1,4 @@
 import ExhibitionDB from './ExhibitionDB.svelte'
-import Artic from './Artic.svelte'
 import Artwork from './Artwork.svelte'
 
 export function showPopup(open, title, data) {
@@ -8,7 +7,10 @@ export function showPopup(open, title, data) {
 			open(ExhibitionDB, { object: data })
 			break
 		case 'Artic':
-			open(Artic, { object: data })
+			open(Artwork, {
+				object: data,
+				metadata: () => articMetadata(data)
+			})
 			break
 		case 'Metropolitan':
 			open(Artwork, {
@@ -42,5 +44,14 @@ async function metropolitanMetadata(object) {
 	result = await fetch(result)
 	result = await result.json()
 	result['image_url'] = result['primaryImageSmall']
+	return result
+};
+
+async function articMetadata(object) {
+	let result = 'https://api.artic.edu/api/v1/exhibitions/' + object.id
+	result = await fetch(result)
+	result = await result.json()
+	result = result['data']
+	result['image_url'] = object['image_url']
 	return result
 };
