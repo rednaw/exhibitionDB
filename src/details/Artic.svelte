@@ -4,9 +4,9 @@
 
 	export let object;
 
-	async function inGallery() {
+	async function inGallery(metadata) {
 		const storedValue = await gallery.get();
-		return storedValue.includes(object.image_url);
+		return storedValue.includes(metadata.image_url);
 	}
 
 	let metadata = async function (object) {
@@ -27,7 +27,7 @@
 {#await metadata(object)}
 	<p>...loading object metadata</p>
 {:then metadata}
-	{#await inGallery()}
+	{#await inGallery(metadata)}
 		<p>...loading gallery</p>
 	{:then inGallery}
 		<div>

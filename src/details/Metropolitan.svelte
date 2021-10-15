@@ -27,10 +27,10 @@
 </script>
 
 {#await metadata(object)}
-	<p>...loading</p>
+	<p>...loading object metadata</p>
 {:then metadata}
 	{#await inGallery(metadata)}
-		<p>...loading</p>
+		<p>...loading gallery</p>
 	{:then inGallery}
 		<div>
 			<Toggle
