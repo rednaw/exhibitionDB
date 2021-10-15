@@ -3,15 +3,12 @@
 	import { gallery, addImage, removeImage } from '../stores/galleryStore.js';
 
 	export let object;
+	export let metadata;
 
 	async function inGallery(metadata) {
 		const storedValue = await gallery.get();
 		return storedValue.includes(metadata.image_url);
 	}
-
-	let metadata = async function (object) {
-		return await object;
-	};
 
 	function toggle(toggleValue, imageUrl) {
 		if (toggleValue) {
@@ -31,7 +28,7 @@
 		<div>
 			<Toggle
 				hideLabel="true"
-				on:toggle={(e) => toggle(e.detail, object.image_url)}
+				on:toggle={(e) => toggle(e.detail, metadata.image_url)}
 				toggled={inGallery}
 				on="In gallery"
 				off="Not in gallery"
@@ -40,24 +37,24 @@
 
 		<div class="columns">
 			<div class="left_column">
-				<img src={object.image_url} alt={object.title} width="400" />
+				<img src={metadata.image_url} alt={metadata.title} width="400" />
 			</div>
 			<div class="right_column">
 				<p>
 					<strong>Title:</strong>
-					{object.title}
+					{metadata.title}
 				</p>
 				<p>
 					<strong>Artist:</strong>
-					{object.artist}
+					{metadata.artist}
 				</p>
 				<p>
 					<strong>Type:</strong>
-					{object.type}
+					{metadata.type}
 				</p>
 				<p>
 					<strong>Date:</strong>
-					{object.date}
+					{metadata.date}
 				</p>
 			</div>
 		</div>
