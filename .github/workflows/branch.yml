@@ -28,27 +28,11 @@ jobs:
         run: |
           npm run build
 
-      - name: Install Python
-        uses: actions/setup-python@v2
+      - name: Get database
+        uses: actions/checkout@v2
         with:
-          python-version: 3.9
-
-      - name: 💎 Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-
-      - name: Initialize database
-        run: |
-          python -m pip install --upgrade pip
-          pip install csv-to-sqlite
-          ./bin/initdb.sh
-
-      # - name: Get database
-      #   uses: actions/checkout@v2
-      #   with:
-      #     ref: data-branch
-      #     path: data
+          ref: data-branch
+          path: data
 
       - name: Download extra runtime dependencies
         run: |
