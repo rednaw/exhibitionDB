@@ -2,4 +2,4 @@
 	export let object;
 </script>
 
-<p>{Object.getOwnPropertyNames(object)}</p>
+<pre>{JSON.stringify(object, undefined, 2)}</pre>

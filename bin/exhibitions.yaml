@@ -1,0 +1,20 @@
+Artic:
+  exhibitions:
+    - id
+    - title
+    - aic_start_at
+    - aic_end_at
+    - image_id
+  rest:
+    - short_description
+    - description
+
+ExhibitionDB:
+  Ubicazioni:
+    - Luogo_Espositivo
+  Esposizioni:
+    - Anno_Esposizione
+    - Titolo_Esposizione
+  Città:
+    - Città_visione
+    - Nazione

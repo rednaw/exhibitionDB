@@ -1,21 +1,55 @@
 import ExhibitionDB from './ExhibitionDB.svelte'
-import Metropolitan from './Metropolitan.svelte'
-import Artic from './Artic.svelte'
-import Rijksmuseum from './Rijksmuseum.svelte'
+import Dialog from './Dialog.svelte'
 
 export function showPopup(open, title, data) {
 	switch (title) {
 		case 'ExhibitionDB':
 			open(ExhibitionDB, { object: data })
 			break
-		case 'Metropolitan':
-			open(Metropolitan, { object: data })
-			break
 		case 'Artic':
-			open(Artic, { object: data })
+			open(Dialog, {
+				object: data,
+				metadata: () => articMetadata(data)
+			})
+			break
+		case 'Metropolitan':
+			open(Dialog, {
+				object: data,
+				metadata: () => metropolitanMetadata(data)
+			})
+			break
+		case 'Artic2':
+			open(Dialog, {
+				object: data,
+				metadata: () => defaultMetadata(data)
+			})
 			break
 		case 'Rijksmuseum':
-			open(Rijksmuseum, { object: data })
+			open(Dialog, {
+				object: data,
+				metadata: () => defaultMetadata(data)
+			})
 			break
 	}
+}
+
+async function defaultMetadata(object) {
+	return await object
+}
+
+async function metropolitanMetadata(object) {
+	let result = 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + object.id
+	result = await fetch(result)
+	result = await result.json()
+	result['image_url'] = result['primaryImageSmall']
+	return result
+}
+
+async function articMetadata(object) {
+	let result = 'https://api.artic.edu/api/v1/exhibitions/' + object.id
+	result = await fetch(result)
+	result = await result.json()
+	result = result['data']
+	result['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${result['image_id']}/full/843,/0/default.jpg`
+	return result
 }

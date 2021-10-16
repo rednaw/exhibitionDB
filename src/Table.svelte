@@ -6,7 +6,7 @@
 	import { title, query, queryResult } from './stores/databaseStore.js';
 	import { showPopup } from './details/show.js';
 
-	const hiddenColumns = ['id', 'Object_ID', 'image_id', 'objectImage'];
+	const hiddenColumns = ['id', 'image_url'];
 	const { open } = getContext('simple-modal');
 
 	// GroupBy controls
@@ -88,7 +88,7 @@ Group By
 <div bind:this={tableComponent} />
 <br /><br />
 <strong>Query: </strong>
-<pre>{$query  ? format($query) : ''}</pre>
+<pre>{$query ? format($query['query']) : ''}</pre>
 
 <style>
 </style>

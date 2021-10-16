@@ -3,7 +3,8 @@ require 'fileutils'
 require 'json'
 require 'open3'
 
-API_DATA = '_artic/artic-api-data'
+WORKSPACE = '_workspace/artic'
+FileUtils.mkdir_p(WORKSPACE)
 
 def run(cmd)
   stdout, stderr, status = Open3.capture3(cmd)
@@ -14,20 +15,19 @@ def run(cmd)
 end
 
 def download()
-  FileUtils.mkdir_p('_artic')
   puts 'Download bulk data from the public Art Institute of Chicago API'
-  run("curl -s -o #{API_DATA}.tar.bz2 https://artic-api-data.s3.amazonaws.com/artic-api-data.tar.bz2")
+  run("curl -s -o #{WORKSPACE}/artic-api-data.tar.bz2 https://artic-api-data.s3.amazonaws.com/artic-api-data.tar.bz2")
 end
 
-def to_csv(table, columns)
+def to_sqlite3(table, columns)
   puts "Unpack table data for #{table}" 
-  run("tar -C _artic -xf #{API_DATA}.tar.bz2 artic-api-data/json/#{table}")
+  run("tar -C #{WORKSPACE} -xf #{WORKSPACE}/artic-api-data.tar.bz2 artic-api-data/json/#{table}")
   
-  puts "Create table #{table}"
+  puts "Create CSV file for #{table}"
   csv = []
   header = []
 
-  rows = Dir.glob("#{API_DATA}/json/#{table}/*.json")
+  rows = Dir.glob("#{WORKSPACE}/artic-api-data/json/#{table}/*.json")
   JSON.parse(File.read(rows[0])).each { |key, value|
     if columns.include?(key)
       header << key.gsub(' ', '_')
@@ -49,11 +49,15 @@ def to_csv(table, columns)
     e.join("|")
   }.join($/))
 
+  puts "Create SQLite3 database for #{table}"
   run("csv-to-sqlite -f data/#{table}.csv -o data/Artic.sqlite3 --drop-tables --delimiter '|'")
   FileUtils.rm_f("data/#{table}.csv")
 end
 
 download()
-to_csv('exhibitions', ['id', 'title', 'image_id', 'aic_start_at','aic_end_at'])
+to_sqlite3('exhibitions', ['id', 'title', 'image_id', 'aic_start_at','aic_end_at'])
+to_sqlite3('artworks', ['id', 'title', 'artist_title', 'classification_title', 'date_display', 'image_id'])
+
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')
-run('date >data/Artic.timestamp')
+
+run('date > data/Artic.timestamp')

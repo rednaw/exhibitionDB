@@ -3,19 +3,12 @@
 	import { gallery, addImage, removeImage } from '../stores/galleryStore.js';
 
 	export let object;
+	export let metadata;
 
 	async function inGallery(metadata) {
 		const storedValue = await gallery.get();
-		return storedValue.includes(metadata.primaryImageSmall);
+		return storedValue.includes(metadata.image_url);
 	}
-
-	let metadata = async function (object) {
-		let result =
-			'https://collectionapi.metmuseum.org/public/collection/v1/objects/' +
-			object.Object_ID;
-		result = await fetch(result);
-		return await result.json();
-	};
 
 	function toggle(toggleValue, imageUrl) {
 		if (toggleValue) {
@@ -35,7 +28,7 @@
 		<div>
 			<Toggle
 				hideLabel="true"
-				on:toggle={(e) => toggle(e.detail, metadata.primaryImageSmall)}
+				on:toggle={(e) => toggle(e.detail, metadata.image_url)}
 				toggled={inGallery}
 				on="In gallery"
 				off="Not in gallery"
@@ -44,11 +37,7 @@
 
 		<div class="columns">
 			<div class="left_column">
-				<img
-					src={metadata.primaryImageSmall}
-					alt={metadata.title}
-					width="400"
-				/>
+				<img src={metadata.image_url} alt={metadata.title} width="400" />
 			</div>
 			<div class="right_column">
 				<p>
@@ -57,38 +46,18 @@
 				</p>
 				<p>
 					<strong>Artist:</strong>
-					{metadata.artistDisplayName}, {metadata.artistDisplayBio}
+					{metadata.artist}
+				</p>
+				<p>
+					<strong>Type:</strong>
+					{metadata.type}
 				</p>
 				<p>
 					<strong>Date:</strong>
-					{metadata.objectDate}
-				</p>
-				<p>
-					<strong>Medium:</strong>
-					{metadata.medium}
-				</p>
-				<p>
-					<strong
-						><a
-							href={metadata.objectWikidata_URL}
-							target="_blank"
-							rel="noreferrer">Object Wiki</a
-						></strong
-					>
-				</p>
-				<p>
-					<strong
-						><a
-							href={metadata.artistWikidata_URL}
-							target="_blank"
-							rel="noreferrer">Artist Wiki</a
-						></strong
-					>
+					{metadata.date}
 				</p>
 			</div>
 		</div>
-	{:catch error}
-		<p style="color: red">{error.message}</p>
 	{/await}
 {:catch error}
 	<p style="color: red">{error.message}</p>
