@@ -28,11 +28,11 @@ jobs:
         run: |
           npm run build
 
-      # - name: Get database
-      #   uses: actions/checkout@v2
-      #   with:
-      #     ref: data-branch
-      #     path: data
+      - name: Get database
+        uses: actions/checkout@v2
+        with:
+          ref: data-branch
+          path: data
 
       - name: Download extra runtime dependencies
         run: |
