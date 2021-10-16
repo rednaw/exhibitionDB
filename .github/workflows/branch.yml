@@ -28,17 +28,22 @@ jobs:
         run: |
           npm run build
 
-      - name: Get database
-        uses: actions/checkout@v2
-        with:
-          ref: data-branch
-          path: data
+      # - name: Get database
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: data-branch
+      #     path: data
 
       - name: Download extra runtime dependencies
         run: |
           curl -s --location --output build/sql-wasm.js https://unpkg.com/sql.js@latest/dist/sql-wasm.js
           curl -s --location --output build/sql-wasm.wasm https://unpkg.com/sql.js@latest/dist/sql-wasm.wasm
           curl -s --location --output build/tabulator.min.css.map https://unpkg.com/tabulator-tables@latest/dist/css/tabulator.min.css.map
+
+      - name: 💎 Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
 
       - name: 🔨 Build Jekyll site
         uses: limjh16/jekyll-action-ts@v2
