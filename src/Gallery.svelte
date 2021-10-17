@@ -30,7 +30,7 @@
 			width: 100%;
 			height: 2048px;
 
-			background-image: url('images/background.webp');
+			background-image: url('static/images/background.webp');
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
