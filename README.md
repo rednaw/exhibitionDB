@@ -4,7 +4,7 @@
 
 # ExhibitionDB 
 
-<img src="/images/logo.png" height="300px"/>
+<img src="/static/images/logo.png" height="300px"/>
 
 ## Art exhibitions database
 
