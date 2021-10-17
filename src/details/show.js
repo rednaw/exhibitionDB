@@ -38,18 +38,20 @@ async function defaultMetadata(object) {
 }
 
 async function metropolitanMetadata(object) {
-	let result = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${object.id}`
-	result = await fetch(result)
-	result = await result.json()
-	result['image_url'] = result['primaryImageSmall']
-	return result
+	let metadata = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${object.id}`
+	metadata = await fetch(metadata)
+	metadata = await metadata.json()
+	metadata['image_url'] = metadata['primaryImageSmall']
+
+	return { ...metadata, ...object }
 }
 
 async function articMetadata(table, object) {
-	let result = `https://api.artic.edu/api/v1/${table}/${object.id}`
-	result = await fetch(result)
-	result = await result.json()
-	result = result['data']
-	result['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
-	return result
+	let metadata = `https://api.artic.edu/api/v1/${table}/${object.id}`
+	metadata = await fetch(metadata)
+	metadata = await metadata.json()
+	metadata = metadata['data']
+	metadata['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
+
+	return { ...metadata, ...object }
 }
