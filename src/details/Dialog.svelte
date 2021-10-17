@@ -6,15 +6,20 @@
 	export let metadata;
 
 	async function inGallery(metadata) {
-		const storedValue = await gallery.get();
-		return storedValue.includes(metadata);
+		let storedValue = await gallery.get();
+		storedValue = storedValue.map(function (element) {
+			return JSON.stringify(element);
+		});
+		const coreMetadata = JSON.stringify(metadata.core);
+
+		return storedValue.includes(coreMetadata);
 	}
 
 	function toggle(toggleValue, metadata) {
 		if (toggleValue) {
-			addItem(metadata);
+			addItem(metadata.core);
 		} else {
-			removeItem(metadata);
+			removeItem(metadata.core);
 		}
 	}
 </script>
@@ -37,24 +42,28 @@
 
 		<div class="columns">
 			<div class="left_column">
-				<img src={metadata.image_url} alt={metadata.title} width="400" />
+				<img
+					src={metadata.core.image_url}
+					alt={metadata.core.title}
+					width="400"
+				/>
 			</div>
 			<div class="right_column">
 				<p>
 					<strong>Title:</strong>
-					{metadata.title}
+					{metadata.core.title}
 				</p>
 				<p>
 					<strong>Artist:</strong>
-					{metadata.artist}
+					{metadata.core.artist}
 				</p>
 				<p>
 					<strong>Type:</strong>
-					{metadata.type}
+					{metadata.core.type}
 				</p>
 				<p>
 					<strong>Date:</strong>
-					{metadata.date}
+					{metadata.core.date}
 				</p>
 			</div>
 		</div>

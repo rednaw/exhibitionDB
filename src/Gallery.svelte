@@ -1,5 +1,10 @@
 <script>
 	import { gallery } from './stores/galleryStore.js';
+	import { getContext } from 'svelte';
+	import { showPopup } from './details/show.js';
+	import { title } from './stores/databaseStore.js';
+
+	const { open } = getContext('simple-modal');
 
 	function imageAction(node, metadata) {
 		node.src = metadata.image_url;
@@ -15,7 +20,7 @@
 	}
 
 	function imageClick(metadata) {
-		console.log(metadata);
+		showPopup(open, 'Gallery', metadata);
 	}
 </script>
 
@@ -40,13 +45,11 @@
 			{#each gallery as item}
 				<div class="thumbnail">
 					<div class="photoContainer">
-						<a href="./#">
-							<img alt="" use:imageAction={item} />
-							<div class="photoInfo">
-								<h3>"{item.title}"</h3>
-								<span class="paintingDate">{item.artist}, {item.date}</span>
-							</div>
-						</a>
+						<img alt="" use:imageAction={item} />
+						<div class="photoInfo">
+							<h3>"{item.title}"</h3>
+							<span class="paintingDate">{item.artist}, {item.date}</span>
+						</div>
 					</div>
 				</div>
 			{/each}
@@ -84,7 +87,7 @@
 		border: 10px solid #000;
 		text-align: center;
 		position: relative;
-		transform: perspective(500px) rotateY(5deg);
+		transform: perspective(500px) rotateY(45deg);
 		width: 90%;
 	}
 	.photoContainer:hover {
@@ -95,10 +98,10 @@
 	}
 	@keyframes thumbTitle {
 		0% {
-			transform: perspective(500px) rotateY(5deg) scale(1);
+			transform: perspective(500px) rotateY(35deg) scale(1);
 		}
 		20% {
-			transform: perspective(500px) rotateY(-10deg) scale(1.1);
+			transform: perspective(500px) rotateY(15deg) scale(1.1);
 		}
 		100% {
 			transform: perspective(500px) rotateY(0deg) scale(1.2);
@@ -126,7 +129,7 @@
 		width: 100%;
 		opacity: 0.5;
 	}
-	.photoContainer a img:hover {
+	.photoContainer img:hover {
 		animation-name: imgTransparency;
 		animation-duration: 1s;
 		animation-fill-mode: both;

@@ -34,7 +34,7 @@ export function addItem(item) {
 export function removeItem(item) {
 	gallery.update($gallery => {
 		$gallery = $gallery.filter(i => {
-			return (i !== item)
+			return (JSON.stringify(i) !== JSON.stringify(item))
 		})
 		return $gallery
 	})
