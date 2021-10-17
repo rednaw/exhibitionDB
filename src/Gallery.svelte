@@ -2,7 +2,6 @@
 	import { gallery } from './stores/galleryStore.js';
 	import { getContext } from 'svelte';
 	import { showPopup } from './details/show.js';
-	import { title } from './stores/databaseStore.js';
 
 	const { open } = getContext('simple-modal');
 
