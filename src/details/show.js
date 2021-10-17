@@ -21,7 +21,7 @@ export function showPopup(open, title, data) {
 		case 'Artic2':
 			open(Dialog, {
 				object: data,
-				metadata: () => defaultMetadata(data)
+				metadata: () => articMetadata(data)
 			})
 			break
 		case 'Rijksmuseum':
