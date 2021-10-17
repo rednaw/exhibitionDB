@@ -1,20 +1,20 @@
 <script>
 	import Toggle from 'svelte-toggle';
-	import { gallery, addImage, removeImage } from '../stores/galleryStore.js';
+	import { gallery, addItem, removeItem } from '../stores/galleryStore.js';
 
 	export let object;
 	export let metadata;
 
 	async function inGallery(metadata) {
 		const storedValue = await gallery.get();
-		return storedValue.includes(metadata.image_url);
+		return storedValue.includes(metadata);
 	}
 
-	function toggle(toggleValue, imageUrl) {
+	function toggle(toggleValue, metadata) {
 		if (toggleValue) {
-			addImage(imageUrl);
+			addItem(metadata);
 		} else {
-			removeImage(imageUrl);
+			removeItem(metadata);
 		}
 	}
 </script>
@@ -28,7 +28,7 @@
 		<div>
 			<Toggle
 				hideLabel="true"
-				on:toggle={(e) => toggle(e.detail, metadata.image_url)}
+				on:toggle={(e) => toggle(e.detail, metadata)}
 				toggled={inGallery}
 				on="In gallery"
 				off="Not in gallery"

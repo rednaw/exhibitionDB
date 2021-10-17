@@ -24,17 +24,17 @@ export const gallery =
 		[]
 	)
 
-export function addImage(url) {
+export function addItem(item) {
 	gallery.update($gallery => {
-		$gallery.unshift(url)
+		$gallery.unshift(item)
 		return $gallery
 	})
 }
 
-export function removeImage(url) {
+export function removeItem(item) {
 	gallery.update($gallery => {
-		$gallery = $gallery.filter(item => {
-			return (item !== url)
+		$gallery = $gallery.filter(i => {
+			return (i !== item)
 		})
 		return $gallery
 	})

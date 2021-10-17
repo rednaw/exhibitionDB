@@ -1,16 +1,12 @@
 <script>
 	import { gallery } from './stores/galleryStore.js';
 
-	async function imageLinks() {
-		return await gallery.get();
-	}
-
-	function imageAction(node, url) {
-		node.src = url;
-		node.addEventListener('click', () => imageClick(url));
+	function imageAction(node, metadata) {
+		node.src = metadata.image_url;
+		node.addEventListener('click', () => imageClick(metadata));
 		return {
-			update(url) {
-				node.src = url;
+			update(metadata) {
+				node.src = metadata.image_url;
 			},
 			destroy() {
 				node.removeEventListener('input', imageClick);
@@ -18,8 +14,8 @@
 		};
 	}
 
-	function imageClick(url) {
-		console.log(url);
+	function imageClick(metadata) {
+		console.log(metadata);
 	}
 </script>
 
@@ -38,20 +34,19 @@
 	</style>
 </svelte:head>
 
-{#await imageLinks() then imageLinks}
-	{#if imageLinks.length > 0}
+{#await gallery.get() then gallery}
+	{#if gallery.length > 0}
 		<div class="row">
-			{#each imageLinks as imageLink}
+			{#each gallery as item}
 				<div class="thumbnail">
 					<div class="photoContainer">
-						<img alt="" use:imageAction={imageLink} />
-						<div class="photoInfo">
-							<span class="photoInfoText">
-								"Armchair"
-								<br />
-								Pottier and Stymus, 1870–75
-							</span>
-						</div>
+						<a href="./#">
+							<img alt="" use:imageAction={item} />
+							<div class="photoInfo">
+								<h3>"{item.title}"</h3>
+								<span class="paintingDate">{item.artist}, {item.date}</span>
+							</div>
+						</a>
 					</div>
 				</div>
 			{/each}
@@ -80,28 +75,24 @@
 		grid-template-columns: repeat(4, 1fr);
 		width: 90%;
 		grid-column-gap: 1%;
-		grid-gap: 50px;
 	}
-
 	.thumbnail {
 		justify-self: center;
 		transition: 0.5s;
 	}
-
 	.photoContainer {
 		border: 10px solid #000;
+		text-align: center;
 		position: relative;
 		transform: perspective(500px) rotateY(5deg);
 		width: 90%;
 	}
-
 	.photoContainer:hover {
 		animation-name: thumbTitle;
 		animation-duration: 1s;
 		animation-fill-mode: both;
 		transition-timing-function: ease-in;
 	}
-
 	@keyframes thumbTitle {
 		0% {
 			transform: perspective(500px) rotateY(5deg) scale(1);
@@ -110,17 +101,15 @@
 			transform: perspective(500px) rotateY(-10deg) scale(1.1);
 		}
 		100% {
-			transform: perspective(500px) rotateY(0deg) scale(1.3);
+			transform: perspective(500px) rotateY(0deg) scale(1.2);
 		}
 	}
-
 	.photoContainer:hover .photoInfo {
 		animation-name: infoSlide;
 		animation-duration: 1s;
 		animation-fill-mode: both;
 		transition-timing-function: ease-in;
 	}
-
 	@keyframes infoSlide {
 		0% {
 			opacity: 0;
@@ -132,20 +121,17 @@
 			visibility: visible;
 		}
 	}
-
 	.photoContainer img {
 		object-fit: cover;
 		width: 100%;
-		height: 320px;
+		opacity: 0.5;
 	}
-
-	.photoContainer img:hover {
+	.photoContainer a img:hover {
 		animation-name: imgTransparency;
 		animation-duration: 1s;
 		animation-fill-mode: both;
 		transition-timing-function: ease-in;
 	}
-
 	@keyframes imgTransparency {
 		0% {
 			opacity: 0.5;
@@ -154,14 +140,23 @@
 			opacity: 1;
 		}
 	}
-
 	.photoInfo {
 		background-color: black;
+		color: white;
+		position: absolute;
+		bottom: 0px;
 		text-align: center;
+		visibility: hidden;
 	}
-
-	.photoInfoText {
-		color: grey;
+	.photoInfo h3 {
+		margin: 7px 10px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	.photoInfo .paintingDate {
+		text-decoration: none;
+		font-size: 12px;
+		padding: 2px;
 	}
 
 	div.introduction {
