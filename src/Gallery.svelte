@@ -86,7 +86,7 @@
 		border: 10px solid #000;
 		text-align: center;
 		position: relative;
-		transform: perspective(500px) rotateY(45deg);
+		transform: perspective(500px) rotateY(15deg);
 		width: 90%;
 	}
 	.photoContainer:hover {
@@ -97,10 +97,10 @@
 	}
 	@keyframes thumbTitle {
 		0% {
-			transform: perspective(500px) rotateY(35deg) scale(1);
+			transform: perspective(500px) rotateY(10deg) scale(1);
 		}
 		20% {
-			transform: perspective(500px) rotateY(15deg) scale(1.1);
+			transform: perspective(500px) rotateY(5deg) scale(1.1);
 		}
 		100% {
 			transform: perspective(500px) rotateY(0deg) scale(1.2);
@@ -133,6 +133,7 @@
 		animation-duration: 1s;
 		animation-fill-mode: both;
 		transition-timing-function: ease-in;
+		cursor: pointer;
 	}
 	@keyframes imgTransparency {
 		0% {
