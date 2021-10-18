@@ -1,5 +1,14 @@
 import interact from "interactjs"
 
+let canvas
+let element
+const mouse = {
+  x: 0,
+  y: 0,
+  startX: 0,
+  startY: 0
+}
+
 export const init = el => {
   interact(el)
     .draggable({
@@ -12,12 +21,10 @@ export const init = el => {
             })
           ],
           range: Infinity,
-          relativePoints: [
-            {
-              x: 0,
-              y: 0
-            }
-          ]
+          relativePoints: [{
+            x: 0,
+            y: 0
+          }]
         }),
         interact.modifiers.restrict({
           restriction: el.parentNode,
@@ -90,18 +97,6 @@ export function mouseDown(e) {
   }
 }
 
-export function setMousePosition(e) {
-  const ev = e || window.event
-
-  if (ev.pageX) {
-    mouse.x = ev.pageX + window.pageXOffset
-    mouse.y = ev.pageY + window.pageYOffset
-  } else if (ev.clientX) {
-    mouse.x = ev.clientX + document.body.scrollLeft
-    mouse.y = ev.clientY + document.body.scrollTop
-  }
-}
-
 export function mouseMove(e) {
   setMousePosition(e)
   if (element) {
@@ -117,33 +112,47 @@ export function mouseMove(e) {
 export function mouseUp() {
   element = null
 
-  const rect = canvas.querySelector('.selection')
-  const boxes = [...canvas.querySelectorAll('.item')]
+  if (canvas) {
+    const rect = canvas.querySelector('.selection')
+    const boxes = [...canvas.querySelectorAll('.item')]
 
-  if (rect) {
-    const inBounds = []
+    if (rect) {
+      const inBounds = []
 
-    for (const box of boxes) {
-      if (isInBounds(rect, box)) {
-        inBounds.push(box)
-      } else {
-        box.style.boxShadow = 'none'
-        box.classList.remove('selected')
+      for (const box of boxes) {
+        if (isInBounds(rect, box)) {
+          inBounds.push(box)
+        } else {
+          box.style.boxShadow = 'none'
+          box.classList.remove('selected')
+        }
       }
-    }
 
-    if (inBounds.length >= 2) {
-      for (const box of inBounds) {
-        box.style.boxShadow = '0 0 3pt 3pt hsl(141, 53%, 53%)'
-        box.classList.add('selected')
+      if (inBounds.length >= 2) {
+        for (const box of inBounds) {
+          box.style.boxShadow = '0 0 3pt 3pt hsl(141, 53%, 53%)'
+          box.classList.add('selected')
+        }
       }
-    }
 
-    if (rect) canvas.removeChild(canvas.querySelector('.selection'))
+      if (rect) canvas.removeChild(canvas.querySelector('.selection'))
+    }
   }
 }
 
-export function isInBounds(obj1, obj2) {
+function setMousePosition(e) {
+  const ev = e || window.event
+
+  if (ev.pageX) {
+    mouse.x = ev.pageX + window.pageXOffset
+    mouse.y = ev.pageY + window.pageYOffset
+  } else if (ev.clientX) {
+    mouse.x = ev.clientX + document.body.scrollLeft
+    mouse.y = ev.clientY + document.body.scrollTop
+  }
+}
+
+function isInBounds(obj1, obj2) {
   const a = obj1.getBoundingClientRect()
   const b = obj2.getBoundingClientRect()
 
