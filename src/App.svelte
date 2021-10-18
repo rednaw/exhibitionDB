@@ -2,18 +2,18 @@
 	import Table from './Table.svelte';
 	import Modal from 'svelte-simple-modal';
 	import Gallery from './Gallery.svelte';
-	import { queries, title } from './stores/databaseStore.js';
+	import { queries, depot } from './stores/databaseStore.js';
 </script>
 
 <div class="navbar">
-	<b><a href="./#" on:click={() => title.set('Gallery')}>Home</a></b>
+	<b><a href="./#" on:click={() => depot.set('Gallery')}>Home</a></b>
 	{#each Object.keys($queries) as key}
-		<a href="./#" on:click={() => title.set(key)}>{key}</a>
+		<a href="./#" on:click={() => depot.set(key)}>{key}</a>
 	{/each}
 </div>
 <div class="main">
 	<Modal>
-		{#if $title == 'Gallery'}
+		{#if $depot == 'Gallery'}
 			<Gallery />
 		{:else}
 			<Table />

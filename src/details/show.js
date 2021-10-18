@@ -1,8 +1,8 @@
 import ExhibitionDB from './ExhibitionDB.svelte'
 import Dialog from './Dialog.svelte'
 
-export function showPopup(open, title, data) {
-	switch (title) {
+export function showPopup(open, depot, data) {
+	switch (depot) {
 		case 'Gallery':
 			open(Dialog, {
 				object: data,

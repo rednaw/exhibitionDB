@@ -3,7 +3,7 @@
 	import 'tabulator-tables/dist/css/tabulator.min.css';
 	import { format } from 'sql-formatter';
 	import { getContext } from 'svelte';
-	import { title, query, queryResult } from './stores/databaseStore.js';
+	import { depot, query, queryResult } from './stores/databaseStore.js';
 	import { showPopup } from './details/show.js';
 
 	const hiddenColumns = ['id', 'image_id', 'image_url'];
@@ -35,7 +35,7 @@
 					},
 					groupStartOpen: false,
 					rowClick: function (e, row) {
-						showPopup(open, $title, row.getData());
+						showPopup(open, $depot, row.getData());
 					},
 					pagination: 'local',
 					paginationSize: 20,
@@ -66,7 +66,7 @@
 	}
 </script>
 
-<h2>{$title}</h2>
+<h2>{$depot}</h2>
 Group By
 <select bind:value={groupColumns[0]} on:change={handleGroupEvent}>
 	<option value="" />

@@ -29,19 +29,19 @@ export const queries = readable(null, function start(set) {
   return function stop() { }
 })
 
-export const title = writable('Gallery')
+export const depot = writable('Gallery')
 
 export const query = derived(
-  [queries, title],
-  ([$queries, $title]) => $queries[$title]
+  [queries, depot],
+  ([$queries, $depot]) => $queries[$depot]
 )
 
 export const queryResult =
   asyncable(
-    async ($title, $query) => {
-      if ($title && $query) { // TODO: figure out better way to only update when both are triggered.
+    async ($depot, $query) => {
+      if ($depot && $query) { // TODO: figure out better way to only update when both are triggered.
         const keys = await localforage_js.keys()
-        const key = queryResultsKey($title)
+        const key = queryResultsKey($depot)
         if (!keys.includes(key)) {
           const result = await runQueryImpl($query['database'], $query['query'])
           if (result) {
@@ -55,7 +55,7 @@ export const queryResult =
       }
     },
     null,
-    [title, query]
+    [depot, query]
   )
 
 // private 

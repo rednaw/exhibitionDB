@@ -67,6 +67,7 @@
 				</p>
 			</div>
 		</div>
+		<pre>{JSON.stringify(metadata, undefined, 2)}</pre>
 	{/await}
 {:catch error}
 	<p style="color: red">{error.message}</p>
