@@ -32,7 +32,8 @@ What follows is a breakdown of the various technologies and projects on which th
 
 ### The Browser
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/User.iuml)
-- [Computer Modern](https://www.checkmyworking.com/cm-web-fonts/): Computer Modern is the family of typefaces developed by Donald Knuth for TeX. 
+- [Computer Modern](https://www.checkmyworking.com/cm-web-fonts/): Computer Modern is the family of typefaces developed by Donald Knuth for TeX.
+- [Interactjs](https://interactjs.io/): JavaScript drag and drop, resizing, and multi-touch gestures for modern browsers.
 - [Javascript](https://javascript.info/): The only programming language that runs in all browsers.
 - [LocalForage](https://localforage.github.io/localForage/): Deal with getting and setting bulk data in the browser offline store.
 - [svelte-asyncable](https://github.com/sveltetools/svelte-asyncable): Super tiny, declarative, optimistic, async store for SvelteJS.
