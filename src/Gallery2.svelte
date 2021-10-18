@@ -109,7 +109,7 @@
 
   onMount(async () => {
     await fetchGallery();
-    const elements = [...document.querySelectorAll('.item')];
+    const elements = [...document.querySelectorAll('.thumbnail')];
     if (elements) {
       for (const el of elements) {
         interactable(el);
@@ -119,13 +119,13 @@
 
   function imageAction(node, metadata) {
     node.src = metadata.image_url;
-    node.addEventListener('click', () => imageClick(metadata));
+    //node.addEventListener('click', () => imageClick(metadata));
     return {
       update(metadata) {
         node.src = metadata.image_url;
       },
       destroy() {
-        node.removeEventListener('input', imageClick);
+        //node.removeEventListener('input', imageClick);
       },
     };
   }
@@ -157,9 +157,19 @@
   on:mousedown={mouseDown}
   on:mousemove={mouseMove}
 >
-  {#each galleryItems as item}
-    <div class="item" data-x="0" data-y="0"><span>{item.title}</span></div>
-  {/each}
+  <div class="row">
+    {#each galleryItems as item}
+      <div class="thumbnail">
+        <div class="photoContainer">
+          <img alt="" use:imageAction={item} />
+          <div class="photoInfo">
+            <h3>"{item.title}"</h3>
+            <span class="paintingDate">{item.artist}, {item.date}</span>
+          </div>
+        </div>
+      </div>
+    {/each}
+  </div>
 </div>
 
 <style>
@@ -167,37 +177,44 @@
     background: transparent;
     height: 2048px;
   }
-  .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background: black;
+  .row {
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 90%;
+    grid-column-gap: 1%;
+  }
+  .thumbnail {
+    justify-self: center;
+    transition: 0.5s;
+  }
+  .photoContainer {
+    border: 10px solid #000;
+    text-align: center;
+    position: relative;
+    width: 90%;
+  }
+  .photoContainer img {
+    object-fit: cover;
+    width: 100%;
+    opacity: 0.5;
+  }
+  .photoInfo {
+    background-color: black;
     color: white;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 1em;
-    touch-action: none;
-    transition: box-shadow 0.5s;
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    visibility: hidden;
   }
-  .item:hover {
+  .photoInfo h3 {
+    margin: 7px 10px;
+    font-size: 14px;
+    font-weight: bold;
   }
-  .item:nth-child(1) {
-    top: 100px;
-    left: 100px;
-  }
-  .item:nth-child(2) {
-    top: 30px;
-    left: 300px;
-  }
-  .item:nth-child(3) {
-    top: 400px;
-    left: 320px;
-  }
-  .item:nth-child(4) {
-    top: 250px;
-    left: 200px;
+  .photoInfo .paintingDate {
+    text-decoration: none;
+    font-size: 12px;
+    padding: 2px;
   }
 </style>
