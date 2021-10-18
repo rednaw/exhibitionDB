@@ -1,38 +1,10 @@
 <script>
   import { onMount } from 'svelte';
-  // import { gallery } from './stores/galleryStore.js';
+  import { gallery } from './stores/galleryStore.js';
   import { interactable } from './interactable.js';
-  // import { getContext } from 'svelte';
-  // import { showPopup } from './details/show.js';
-
-  // const { open } = getContext('simple-modal');
-
-  // function imageAction(node, metadata) {
-  //   node.src = metadata.image_url;
-  //   node.addEventListener('click', () => imageClick(metadata));
-  //   return {
-  //     update(metadata) {
-  //       node.src = metadata.image_url;
-  //     },
-  //     destroy() {
-  //       node.removeEventListener('input', imageClick);
-  //     },
-  //   };
-  // }
-
-  // function imageClick(metadata) {
-  //   showPopup(open, 'Gallery', metadata);
-  // }
-
-  onMount(() => {
-    const elements = [...document.querySelectorAll('.item')];
-
-    if (elements) {
-      for (const el of elements) {
-        interactable(el);
-      }
-    }
-  });
+  import { getContext } from 'svelte';
+  import { showPopup } from './details/show.js';
+  const { open } = getContext('simple-modal');
 
   let canvas;
   let element;
@@ -129,6 +101,38 @@
       a.y + a.height > b.y
     );
   }
+
+  let galleryItems = [];
+  const fetchGallery = async () => {
+    galleryItems = await gallery.get();
+  };
+
+  onMount(async () => {
+    await fetchGallery();
+    const elements = [...document.querySelectorAll('.item')];
+    if (elements) {
+      for (const el of elements) {
+        interactable(el);
+      }
+    }
+  });
+
+  function imageAction(node, metadata) {
+    node.src = metadata.image_url;
+    node.addEventListener('click', () => imageClick(metadata));
+    return {
+      update(metadata) {
+        node.src = metadata.image_url;
+      },
+      destroy() {
+        node.removeEventListener('input', imageClick);
+      },
+    };
+  }
+
+  function imageClick(metadata) {
+    showPopup(open, 'Gallery', metadata);
+  }
 </script>
 
 <svelte:head>
@@ -153,10 +157,9 @@
   on:mousedown={mouseDown}
   on:mousemove={mouseMove}
 >
-  <div class="item" data-x="0" data-y="0"><span>Aap</span></div>
-  <div class="item" data-x="0" data-y="0"><span>Noot</span></div>
-  <div class="item" data-x="0" data-y="0"><span>Mies</span></div>
-  <div class="item" data-x="0" data-y="0"><span>Wim</span></div>
+  {#each galleryItems as item}
+    <div class="item" data-x="0" data-y="0"><span>{item.title}</span></div>
+  {/each}
 </div>
 
 <style>
@@ -169,7 +172,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    background: lightblue;
+    background: black;
+    color: white;
     width: 100px;
     height: 100px;
     cursor: pointer;
@@ -179,9 +183,6 @@
     transition: box-shadow 0.5s;
   }
   .item:hover {
-    -webkit-box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
   }
   .item:nth-child(1) {
     top: 100px;
