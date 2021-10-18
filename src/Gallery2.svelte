@@ -119,13 +119,13 @@
 
   function imageAction(node, metadata) {
     node.src = metadata.image_url;
-    //node.addEventListener('click', () => imageClick(metadata));
+    node.addEventListener('click', () => imageClick(metadata));
     return {
       update(metadata) {
         node.src = metadata.image_url;
       },
       destroy() {
-        //node.removeEventListener('input', imageClick);
+        node.removeEventListener('input', imageClick);
       },
     };
   }
