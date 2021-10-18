@@ -7,6 +7,10 @@ export function showPopup(open, title, data) {
 			open(Dialog, {
 				object: data,
 				metadata: () => defaultMetadata(data)
+			}, {}, {
+				onClosed: () => {
+					console.log('modal window closed')
+				}
 			})
 			break
 		case 'ExhibitionDB':
