@@ -197,7 +197,6 @@
   .photoContainer img {
     object-fit: cover;
     width: 100%;
-    opacity: 0.5;
   }
   .photoInfo {
     background-color: black;
