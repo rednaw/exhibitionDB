@@ -6,8 +6,6 @@
 	import { showPopup } from './details/show.js';
 	const { open } = getContext('simple-modal');
 
-	let canvas;
-
 	let galleryItems = [];
 	const fetchGallery = async () => {
 		galleryItems = await gallery.get();
@@ -56,27 +54,40 @@
 	</style>
 </svelte:head>
 
-<div
-	bind:this={canvas}
-	id="container"
-	on:mouseup={interactable.mouseUp}
-	on:mousedown={interactable.mouseDown}
-	on:mousemove={interactable.mouseMove}
->
-	<div class="row">
-		{#each galleryItems as item}
-			<div class="thumbnail">
-				<div class="photoContainer">
-					<img alt="" use:imageAction={item} />
-					<div class="photoInfo">
-						<h3>"{item.title}"</h3>
-						<span class="paintingDate">{item.artist}, {item.date}</span>
+{#if galleryItems.length > 0}
+	<div
+		id="container"
+		on:mouseup={interactable.mouseUp}
+		on:mousedown={interactable.mouseDown}
+		on:mousemove={interactable.mouseMove}
+	>
+		<div class="row">
+			{#each galleryItems as item}
+				<div class="thumbnail">
+					<div class="photoContainer">
+						<img alt="" use:imageAction={item} />
+						<div class="photoInfo">
+							<h3>"{item.title}"</h3>
+							<span class="paintingDate">{item.artist}, {item.date}</span>
+						</div>
 					</div>
 				</div>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
-</div>
+{:else}
+	<div class="introduction">
+		<b>Welcome to ExhibitionDB</b>
+		<br /><br />
+		Create your own art gallery:
+		<ol>
+			<li>Select a museum from the top menu.</li>
+			<li>Browse the museum artworks using the interactive table.</li>
+			<li>Select artworks to add them to your collection.</li>
+		</ol>
+		Your gallery will appear here.
+	</div>
+{/if}
 
 <style>
 	#container {
@@ -121,5 +132,18 @@
 		text-decoration: none;
 		font-size: 12px;
 		padding: 2px;
+	}
+
+	div.introduction {
+		position: fixed;
+		width: 500px;
+		height: 200px;
+		margin: 10% auto;
+		left: 0;
+		right: 0;
+		border: 2px solid grey;
+		background-color: black;
+		padding: 1em;
+		color: white;
 	}
 </style>
