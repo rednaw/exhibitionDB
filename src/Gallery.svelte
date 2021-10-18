@@ -1,9 +1,27 @@
 <script>
+	import { onMount } from 'svelte';
 	import { gallery } from './stores/galleryStore.js';
+	import * as interactable from './interactable.js';
 	import { getContext } from 'svelte';
 	import { showPopup } from './details/show.js';
-
 	const { open } = getContext('simple-modal');
+
+	let canvas;
+
+	let galleryItems = [];
+	const fetchGallery = async () => {
+		galleryItems = await gallery.get();
+	};
+
+	onMount(async () => {
+		await fetchGallery();
+		const elements = [...document.querySelectorAll('.thumbnail')];
+		if (elements) {
+			for (const el of elements) {
+				interactable.init(el);
+			}
+		}
+	});
 
 	function imageAction(node, metadata) {
 		node.src = metadata.image_url;
@@ -38,39 +56,33 @@
 	</style>
 </svelte:head>
 
-{#await gallery.get() then gallery}
-	{#if gallery.length > 0}
-		<div class="row">
-			{#each gallery as item}
-				<div class="thumbnail">
-					<div class="photoContainer">
-						<img alt="" use:imageAction={item} />
-						<div class="photoInfo">
-							<h3>"{item.title}"</h3>
-							<span class="paintingDate">{item.artist}, {item.date}</span>
-						</div>
+<div
+	bind:this={canvas}
+	id="container"
+	on:mouseup={interactable.mouseUp}
+	on:mousedown={interactable.mouseDown}
+	on:mousemove={interactable.mouseMove}
+>
+	<div class="row">
+		{#each galleryItems as item}
+			<div class="thumbnail">
+				<div class="photoContainer">
+					<img alt="" use:imageAction={item} />
+					<div class="photoInfo">
+						<h3>"{item.title}"</h3>
+						<span class="paintingDate">{item.artist}, {item.date}</span>
 					</div>
 				</div>
-			{/each}
-		</div>
-	{:else}
-		<div class="introduction">
-			<b>Welcome to ExhibitionDB</b>
-			<br /><br />
-			Create your own art gallery:
-			<ol>
-				<li>Select a museum from the top menu.</li>
-				<li>Browse the museum artworks using the interactive table.</li>
-				<li>Select artworks to add them to your collection.</li>
-			</ol>
-			Your gallery will appear here.
-		</div>
-	{/if}
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+			</div>
+		{/each}
+	</div>
+</div>
 
 <style>
+	#container {
+		background: transparent;
+		height: 2048px;
+	}
 	.row {
 		margin: 40px auto;
 		display: grid;
@@ -86,62 +98,11 @@
 		border: 10px solid #000;
 		text-align: center;
 		position: relative;
-		transform: perspective(500px) rotateY(15deg);
 		width: 90%;
-	}
-	.photoContainer:hover {
-		animation-name: thumbTitle;
-		animation-duration: 1s;
-		animation-fill-mode: both;
-		transition-timing-function: ease-in;
-	}
-	@keyframes thumbTitle {
-		0% {
-			transform: perspective(500px) rotateY(10deg) scale(1);
-		}
-		20% {
-			transform: perspective(500px) rotateY(5deg) scale(1.1);
-		}
-		100% {
-			transform: perspective(500px) rotateY(0deg) scale(1.2);
-		}
-	}
-	.photoContainer:hover .photoInfo {
-		animation-name: infoSlide;
-		animation-duration: 1s;
-		animation-fill-mode: both;
-		transition-timing-function: ease-in;
-	}
-	@keyframes infoSlide {
-		0% {
-			opacity: 0;
-			transform: translateX(2.4em);
-		}
-		100% {
-			opacity: 1;
-			transform: translateX(0);
-			visibility: visible;
-		}
 	}
 	.photoContainer img {
 		object-fit: cover;
 		width: 100%;
-		opacity: 0.5;
-	}
-	.photoContainer img:hover {
-		animation-name: imgTransparency;
-		animation-duration: 1s;
-		animation-fill-mode: both;
-		transition-timing-function: ease-in;
-		cursor: pointer;
-	}
-	@keyframes imgTransparency {
-		0% {
-			opacity: 0.5;
-		}
-		100% {
-			opacity: 1;
-		}
 	}
 	.photoInfo {
 		background-color: black;
@@ -160,18 +121,5 @@
 		text-decoration: none;
 		font-size: 12px;
 		padding: 2px;
-	}
-
-	div.introduction {
-		position: fixed;
-		width: 500px;
-		height: 200px;
-		margin: 10% auto;
-		left: 0;
-		right: 0;
-		border: 2px solid grey;
-		background-color: black;
-		padding: 1em;
-		color: white;
 	}
 </style>

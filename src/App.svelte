@@ -1,7 +1,7 @@
 <script>
 	import Table from './Table.svelte';
 	import Modal from 'svelte-simple-modal';
-	import Gallery from './Gallery2.svelte';
+	import Gallery from './Gallery.svelte';
 	import { queries, depot } from './stores/databaseStore.js';
 </script>
 
