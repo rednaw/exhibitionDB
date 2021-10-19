@@ -97,7 +97,7 @@
 	.row {
 		margin: 40px auto;
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		width: 90%;
 		grid-column-gap: 1%;
 	}
