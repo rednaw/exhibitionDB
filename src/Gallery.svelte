@@ -111,6 +111,9 @@
 		position: relative;
 		width: 90%;
 	}
+	.thumbnail:hover {
+		z-index: 1;
+	}
 	.photoContainer img {
 		object-fit: cover;
 		width: 100%;
