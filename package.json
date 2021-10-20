@@ -35,6 +35,6 @@
     "svelte-asyncable": "^2.0.4",
     "svelte-simple-modal": "^1.0.3",
     "svelte-toggle": "^3.0.2",
-    "tabulator-tables": "^4.9.3"
+    "tabulator-tables": "^5.0.2"
   }
 }
