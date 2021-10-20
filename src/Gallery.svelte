@@ -33,10 +33,6 @@
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
-
-			on:mouseup={interactable.mouseUp};
-			on:mousedown={interactable.mouseDown};
-			on:mousemove={interactable.mouseMove};
 		}
 	</style>
 </svelte:head>
