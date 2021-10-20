@@ -13,7 +13,7 @@
 
 	onMount(async () => {
 		await fetchGallery();
-		const elements = [...document.querySelectorAll('.thumbnail')];
+		const elements = [...document.querySelectorAll('.photoContainer')];
 		if (elements) {
 			for (const el of elements) {
 				interactable.init(el);
@@ -44,12 +44,12 @@
 {#if galleryItems.length > 0}
 	<div class="row">
 		{#each galleryItems as item}
-			<div class="thumbnail">
-				<div class="photoContainer">
+			<div class="photoContainer">
+				<div class="thumbnail">
 					<img alt="" src={item.image_url} />
 					<div class="photoInfo" on:click={showPopup(open, 'Gallery', item)}>
-						<h3>"{item.title}"</h3>
-						<span class="paintingDate">{item.artist}, {item.date}</span>
+						<div class="main_info">{item.title}"</div>
+						<div class="extra_info">{item.artist}, {item.date}</div>
 					</div>
 				</div>
 			</div>
@@ -77,20 +77,20 @@
 		width: 90%;
 		grid-column-gap: 1%;
 	}
-	.thumbnail {
+	.photoContainer {
 		justify-self: center;
 		transition: 0.5s;
 	}
-	.photoContainer {
+	.thumbnail {
 		border: 10px solid #000;
 		text-align: center;
 		position: relative;
 		width: 90%;
 	}
-	.thumbnail:hover {
+	.photoContainer:hover {
 		z-index: 1;
 	}
-	.photoContainer img {
+	.thumbnail img {
 		object-fit: cover;
 		width: 100%;
 	}
@@ -102,17 +102,17 @@
 		text-align: center;
 		visibility: hidden;
 	}
-	.photoInfo h3 {
+	.photoInfo .main_info {
 		margin: 7px 10px;
 		font-size: 14px;
 		font-weight: bold;
 	}
-	.photoInfo .paintingDate {
+	.photoInfo .extra_info {
 		text-decoration: none;
 		font-size: 12px;
 		padding: 2px;
 	}
-	.photoContainer:hover .photoInfo {
+	.thumbnail:hover .photoInfo {
 		animation-name: infoSlide;
 		animation-duration: 1s;
 		animation-fill-mode: both;
