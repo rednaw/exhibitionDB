@@ -33,30 +33,27 @@
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
+
+			on:mouseup={interactable.mouseUp};
+			on:mousedown={interactable.mouseDown};
+			on:mousemove={interactable.mouseMove};
 		}
 	</style>
 </svelte:head>
 
 {#if galleryItems.length > 0}
-	<div
-		id="container"
-		on:mouseup={interactable.mouseUp}
-		on:mousedown={interactable.mouseDown}
-		on:mousemove={interactable.mouseMove}
-	>
-		<div class="row">
-			{#each galleryItems as item}
-				<div class="thumbnail">
-					<div class="photoContainer">
-						<img alt="" src={item.image_url} />
-						<div class="photoInfo" on:click={showPopup(open, 'Gallery', item)}>
-							<h3>"{item.title}"</h3>
-							<span class="paintingDate">{item.artist}, {item.date}</span>
-						</div>
+	<div class="row">
+		{#each galleryItems as item}
+			<div class="thumbnail">
+				<div class="photoContainer">
+					<img alt="" src={item.image_url} />
+					<div class="photoInfo" on:click={showPopup(open, 'Gallery', item)}>
+						<h3>"{item.title}"</h3>
+						<span class="paintingDate">{item.artist}, {item.date}</span>
 					</div>
 				</div>
-			{/each}
-		</div>
+			</div>
+		{/each}
 	</div>
 {:else}
 	<div class="introduction">
@@ -73,10 +70,6 @@
 {/if}
 
 <style>
-	#container {
-		background: transparent;
-		height: 2048px;
-	}
 	.row {
 		margin: 40px auto;
 		display: grid;
