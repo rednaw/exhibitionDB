@@ -20,23 +20,6 @@
 			}
 		}
 	});
-
-	function imageAction(node, metadata) {
-		node.src = metadata.image_url;
-		node.addEventListener('click', () => imageClick(metadata));
-		return {
-			update(metadata) {
-				node.src = metadata.image_url;
-			},
-			destroy() {
-				node.removeEventListener('input', imageClick);
-			},
-		};
-	}
-
-	function imageClick(metadata) {
-		showPopup(open, 'Gallery', metadata);
-	}
 </script>
 
 <svelte:head>
@@ -65,8 +48,8 @@
 			{#each galleryItems as item}
 				<div class="thumbnail">
 					<div class="photoContainer">
-						<img alt="" use:imageAction={item} />
-						<div class="photoInfo">
+						<img alt="" src={item.image_url} />
+						<div class="photoInfo" on:click={showPopup(open, 'Gallery', item)}>
 							<h3>"{item.title}"</h3>
 							<span class="paintingDate">{item.artist}, {item.date}</span>
 						</div>
@@ -135,6 +118,24 @@
 		text-decoration: none;
 		font-size: 12px;
 		padding: 2px;
+	}
+	.photoContainer:hover .photoInfo {
+		animation-name: infoSlide;
+		animation-duration: 1s;
+		animation-fill-mode: both;
+		transition-timing-function: ease-in;
+		cursor: pointer;
+	}
+	@keyframes infoSlide {
+		0% {
+			opacity: 0;
+			transform: translateX(2.4em);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+			visibility: visible;
+		}
 	}
 
 	div.introduction {
