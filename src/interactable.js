@@ -63,6 +63,6 @@ export const init = el => {
         translate(target)(x, y)
         updateAttributes(target)(x, y)
       }
-    })
+    }).styleCursor(false)
 }
 

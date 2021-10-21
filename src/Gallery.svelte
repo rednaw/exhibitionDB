@@ -94,6 +94,7 @@
 		text-align: center;
 		position: relative;
 		width: 90%;
+		cursor: move;
 	}
 	.thumbnail img {
 		object-fit: cover;
