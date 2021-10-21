@@ -7,6 +7,7 @@
 	const { open } = getContext('simple-modal');
 
 	let galleryItems = [];
+	let photoContainers = [];
 	const fetchGallery = async () => {
 		galleryItems = await gallery.get();
 	};
@@ -20,6 +21,13 @@
 			}
 		}
 	});
+
+	function mouseEnter(item, index) {
+		photoContainers[index].style.zIndex = photoContainers.length - 1;
+		for (let i = index; i < photoContainers.length - 1; i++) {
+			photoContainers[i + 1].style.zIndex = i;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -39,9 +47,13 @@
 
 {#if galleryItems.length > 0}
 	<div class="row">
-		{#each galleryItems as item}
-			<div class="photoContainer">
-				<div class="thumbnail">
+		{#each galleryItems as item, i}
+			<div
+				class="photoContainer"
+				style="z-index: {i};"
+				bind:this={photoContainers[i]}
+			>
+				<div class="thumbnail" on:mouseenter={mouseEnter(item, i)}>
 					<img alt="" src={item.image_url} />
 					<div class="photoInfo" on:click={showPopup(open, 'Gallery', item)}>
 						<div class="main_info">{item.title}"</div>
@@ -82,9 +94,6 @@
 		text-align: center;
 		position: relative;
 		width: 90%;
-	}
-	.photoContainer:hover {
-		z-index: 1;
 	}
 	.thumbnail img {
 		object-fit: cover;

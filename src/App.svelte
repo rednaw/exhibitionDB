@@ -23,7 +23,7 @@
 
 <style>
 	.navbar {
-		z-index: 1;
+		z-index: 999;
 		overflow: hidden;
 		background-color: #333;
 		position: fixed;
