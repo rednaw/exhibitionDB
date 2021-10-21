@@ -23,10 +23,14 @@
 	});
 
 	function mouseEnter(item, index) {
-		photoContainers[index].style.zIndex = photoContainers.length - 1;
-		for (let i = index; i < photoContainers.length - 1; i++) {
-			photoContainers[i + 1].style.zIndex = i;
-		}
+		const original = photoContainers[index].style.zIndex;
+		photoContainers.forEach((container) => {
+			if (container.style.zIndex == original) {
+				container.style.zIndex = photoContainers.length - 1;
+			} else if (container.style.zIndex > original) {
+				container.style.zIndex = container.style.zIndex - 1;
+			}
+		});
 	}
 </script>
 
