@@ -51,13 +51,13 @@
 
 {#if galleryItems.length > 0}
 	<div class="row">
-		{#each galleryItems as item, i}
+		{#each galleryItems as item, index}
 			<div
 				class="photoContainer"
-				style="z-index: {i};"
-				bind:this={photoContainers[i]}
+				style="z-index: {index};"
+				bind:this={photoContainers[index]}
 			>
-				<div class="thumbnail" on:mouseenter={mouseEnter(item, i)}>
+				<div class="thumbnail" on:mouseenter={mouseEnter(item, index)}>
 					<img alt="" src={item.image_url} />
 					<div class="photoInfo" on:click={showPopup(open, 'Gallery', item)}>
 						<div class="main_info">{item.title}"</div>
