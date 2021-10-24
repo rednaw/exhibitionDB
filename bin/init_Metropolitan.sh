@@ -11,8 +11,3 @@ echo Create table MetObects
 csv-to-sqlite -f $WORKSPACE/MetObjects.csv -o data/Metropolitan.sqlite3 --drop-tables
 sqlite3 data/Metropolitan.sqlite3 <bin/optimize_Metropolitan.sql
 echo Compacted table MetObjects to $(sqlite3 data/Metropolitan.sqlite3 "select count(*) from MetObjects") rows
-
-date >data/Metropolitan.timestamp
-
-echo
-echo

@@ -12,5 +12,3 @@ sed -i '1 s/\[1\]//g' $WORKSPACE/collection.csv
 echo Create table Rijksmuseum
 csv-to-sqlite -f $WORKSPACE/collection.csv -o data/Rijksmuseum.sqlite3 --drop-tables
 sqlite3 data/Rijksmuseum.sqlite3 <bin/optimize_Rijksmuseum.sql
-
-date >data/Rijksmuseum.timestamp
