@@ -1,5 +1,5 @@
 <script>
-	import Tabulator from 'tabulator-tables';
+	import { TabulatorFull as Tabulator } from 'tabulator-tables';
 	import 'tabulator-tables/dist/css/tabulator.min.css';
 	import { format } from 'sql-formatter';
 	import { getContext } from 'svelte';
@@ -34,9 +34,6 @@
 						return definitions;
 					},
 					groupStartOpen: false,
-					rowClick: function (e, row) {
-						showPopup(open, $depot, row.getData());
-					},
 					pagination: 'local',
 					paginationSize: 20,
 					paginationSizeSelector: [5, 10, 20, 50, 100],
@@ -49,6 +46,9 @@
 						table.hideColumn(column);
 					}
 				}
+				table.on('rowClick', function (e, row) {
+					showPopup(open, $depot, row.getData());
+				});
 			}
 		});
 	});

@@ -5,19 +5,19 @@ import { asyncable } from 'svelte-asyncable'
 export const queries = readable(null, function start(set) {
   set({
     'Artic': {
-      'query': 'select * from exhibitions',
+      'query': 'select * from exhibitions limit 100000',
       'database': 'Artic'
     },
     'Artic2': {
-      'query': 'select * from artworks',
+      'query': 'select * from artworks limit 100000',
       'database': 'Artic'
     },
     'Metropolitan': {
-      'query': 'select * from MetObjects',
+      'query': 'select * from MetObjects limit 100000',
       'database': 'Metropolitan'
     },
     'Rijksmuseum': {
-      'query': 'select * from collection',
+      'query': 'select * from collection limit 100000',
       'database': 'Rijksmuseum'
     },
     'ExhibitionDB': {
