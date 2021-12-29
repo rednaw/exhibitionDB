@@ -60,4 +60,3 @@ to_sqlite3('artworks', ['id', 'title', 'artist_title', 'classification_title', '
 
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')
 
-run('date > data/Artic.timestamp')
