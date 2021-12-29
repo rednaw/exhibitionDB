@@ -20,8 +20,47 @@ export const queries = readable(null, function start(set) {
       'query': 'select * from collection',
       'database': 'Rijksmuseum'
     },
-    'ExhibitionDB': {
-      'query': 'select e.Anno_Esposizione, e.Titolo_Esposizione, u.Luogo_Espositivo, c.Città_visione, c.Nazione from Ubicazioni u, Esposizioni e, Città c where e.ID_Ubicazioni = u.ID_Ubicazioni and u.ID_Città = c.ID_Città',
+    'ExhibitionDB_1': {
+      'query': `select
+                  e.Anno_Esposizione,
+                  e.Titolo_Esposizione,
+                  u.Luogo_Espositivo,
+                  c.Città_visione,
+                  c.Nazione as Luogo,
+                  a.Nome,
+                  a.Cognome,
+                  a."Nato il",
+                  a."Morto il"
+                from
+                  Artisti a,
+                  Artisti_esposti ae,
+                  Ubicazioni u,
+                  Esposizioni e,
+                  Città c
+                where
+                  e.ID_Ubicazioni = u.ID_Ubicazioni
+                  and u.ID_Città = c.ID_Città
+                  and a.ID_Artisti = ae.ID_Artista
+                  and e.ID_Esposizioni = ae.ID_Esposizione`,
+      'database': 'ExhibitionDB'
+    },
+    'ExhibitionDB_2': {
+      'query': `select
+                  e.Anno_Esposizione as Anno,
+                  e.Titolo_Esposizione as Titolo,
+                  u.Luogo_Espositivo || ' ' || c.Città_visione || ' ' || c.Nazione as Luogo,
+                  a.Nome || ' ' || a.Cognome || ' (' || a."Nato il" || '-' || a."Morto il" || ')' as Artista                  
+                from
+                  Artisti a,
+                  Artisti_esposti ae,
+                  Ubicazioni u,
+                  Esposizioni e,
+                  Città c
+                where
+                  e.ID_Ubicazioni = u.ID_Ubicazioni
+                  and u.ID_Città = c.ID_Città
+                  and a.ID_Artisti = ae.ID_Artista
+                  and e.ID_Esposizioni = ae.ID_Esposizione`,
       'database': 'ExhibitionDB'
     }
   })
