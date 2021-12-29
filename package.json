@@ -33,8 +33,8 @@
     "sql.js": "^1.6.2",
     "svelte": "^3.44.3",
     "svelte-asyncable": "^2.0.4",
-    "tabulator-tables": "^5.0.3",
     "svelte-simple-modal": "^1.2.0",
-    "svelte-toggle": "^3.1.0"
+    "svelte-toggle": "^3.1.0",
+    "tabulator-tables": "^5.0.3"
   }
 }
