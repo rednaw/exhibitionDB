@@ -20,12 +20,21 @@ INSERT INTO tmpTable(id, title, start_at, end_at, image, catalogue, description)
 DROP TABLE exhibitions;
 ALTER TABLE tmpTable RENAME TO exhibitions; 
 
-
-
 DELETE FROM artworks WHERE image_id = '';
-CREATE TABLE IF NOT EXISTS tmpTable(id TEXT, title TEXT, artist TEXT, type TEXT, date TEXT, image_id TEXT);
-INSERT INTO tmpTable(id, title, artist, type, date, image_id)
-  SELECT id, title, artist_title, classification_title, date_display, image_id
+CREATE TABLE IF NOT EXISTS tmpTable(
+  id TEXT, 
+  title TEXT, 
+  artist TEXT, 
+  type TEXT, 
+  date TEXT
+);
+INSERT INTO tmpTable(id, title, artist, type, date)
+  SELECT 
+    id, 
+    title, 
+    artist_title, 
+    classification_title, 
+    date_display
   FROM artworks;
 DROP TABLE artworks;
 ALTER TABLE tmpTable RENAME TO artworks;

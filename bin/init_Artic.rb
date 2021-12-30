@@ -65,7 +65,7 @@ to_csv('exhibitions', ['id', 'title', 'image_id', 'aic_start_at', 'aic_end_at', 
 to_sqlite3('exhibitions')
 
 unpack('artworks')
-to_csv('artworks', ['id', 'title', 'artist_title', 'classification_title', 'date_display', 'image_id'])
+to_csv('artworks', ['id', 'title', 'artist_title', 'classification_title', 'date_display'])
 to_sqlite3('artworks')
 
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')

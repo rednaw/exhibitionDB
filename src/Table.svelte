@@ -6,7 +6,7 @@
 	import { database, query, queryResult } from './stores/databaseStore.js';
 	import { showPopup } from './details/show.js';
 
-	const hiddenColumns = ['id', 'image_id', 'image_url'];
+	const hiddenColumns = ['id', 'image_url'];
 	const { open } = getContext('simple-modal');
 
 	// GroupBy controls

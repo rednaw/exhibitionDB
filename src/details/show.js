@@ -63,7 +63,7 @@ async function articArtworksMetadata(object) {
 	metadata = await metadata.json()
 	metadata = metadata['data']
 
-	object['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
+	object['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${metadata.image_id}/full/843,/0/default.jpg`
 	return { core: object, extended: metadata }
 }
 
