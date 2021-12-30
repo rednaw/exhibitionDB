@@ -1,10 +1,11 @@
 import ExhibitionDB from './ExhibitionDB.svelte'
-import Dialog from './Dialog.svelte'
+import Exhibition from './Exhibition.svelte'
+import Artwork from './Artwork.svelte'
 
 export function showPopup(open, database, data) {
 	switch (database) {
 		case 'Gallery':
-			open(Dialog, {
+			open(Artwork, {
 				object: data,
 				metadata: () => defaultMetadata(data)
 			}, {}, {
@@ -16,26 +17,26 @@ export function showPopup(open, database, data) {
 		case 'ExhibitionDB':
 			open(ExhibitionDB, { object: data })
 			break
-		case 'Artic':
-			open(Dialog, {
+		case 'Artic exhibitions':
+			open(Exhibition, {
 				object: data,
-				metadata: () => articMetadata('exhibitions', data)
+				metadata: () => articExhibitionsMetadata(data)
 			})
 			break
-		case 'Metropolitan':
-			open(Dialog, {
+		case 'Metropolitan artworks':
+			open(Artwork, {
 				object: data,
 				metadata: () => metropolitanMetadata(data)
 			})
 			break
-		case 'Artic2':
-			open(Dialog, {
+		case 'Artic artworks':
+			open(Artwork, {
 				object: data,
-				metadata: () => articMetadata('artworks', data)
+				metadata: () => articArtworksMetadata(data)
 			})
 			break
-		case 'Rijksmuseum':
-			open(Dialog, {
+		case 'Rijksmuseum artworks':
+			open(Artwork, {
 				object: data,
 				metadata: () => defaultMetadata(data)
 			})
@@ -56,12 +57,27 @@ async function metropolitanMetadata(object) {
 	return { core: object, extended: metadata }
 }
 
-async function articMetadata(table, object) {
-	let metadata = `https://api.artic.edu/api/v1/${table}/${object.id}`
+async function articArtworksMetadata(object) {
+	let metadata = `https://api.artic.edu/api/v1/artworks/${object.id}`
 	metadata = await fetch(metadata)
 	metadata = await metadata.json()
 	metadata = metadata['data']
 
 	object['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${object.image_id}/full/843,/0/default.jpg`
+	return { core: object, extended: metadata }
+}
+
+async function articExhibitionsMetadata(object) {
+	let metadata = `https://api.artic.edu/api/v1/exhibitions/${object.id}`
+	metadata = await fetch(metadata)
+	metadata = await metadata.json()
+	metadata = metadata['data']
+
+	if (object['image'] == 'yes') {
+		object['image_url'] = `https://lakeimagesweb.artic.edu/iiif/2/${metadata.image_id}/full/843,/0/default.jpg`
+	}
+	if (object['catalogue'] == 'yes') {
+		object['catalogue_url'] = `https://www.artic.edu/assets/${metadata['document_ids']}`
+	}
 	return { core: object, extended: metadata }
 }
