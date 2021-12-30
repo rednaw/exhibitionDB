@@ -58,13 +58,13 @@ def to_sqlite3(table)
 end
 
 
-#download()
+download()
 
-#unpack('exhibitions')
+unpack('exhibitions')
 to_csv('exhibitions', ['id', 'title', 'image_id', 'aic_start_at', 'aic_end_at', 'document_ids', 'description'])
 to_sqlite3('exhibitions')
 
-#unpack('artworks')
+unpack('artworks')
 to_csv('artworks', ['id', 'title', 'artist_title', 'classification_title', 'date_display', 'image_id'])
 to_sqlite3('artworks')
 
