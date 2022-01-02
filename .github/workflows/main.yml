@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths-ignore:
-      - _data/**
+      - '_data/**'
+      - 'bin/**'
   workflow_run:
     workflows: ['Create database']
     types:

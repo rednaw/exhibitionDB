@@ -69,4 +69,4 @@ to_csv('artworks', ['id', 'title', 'artist_title', 'classification_title', 'date
 to_sqlite3('artworks')
 
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')
-
+run('md5sum data/Artic.sqlite3 > data/Artic.md5')

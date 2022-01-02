@@ -8,3 +8,5 @@ for file in $(find _data -name "*.mer"); do
   csv-to-sqlite -f data/$table.csv -o data/ExhibitionDB.sqlite3 --drop-tables --delimiter ';'
   rm data/$table.csv
 done
+
+md5sum data/ExhibitionDB.sqlite3 >data/ExhibitionDB.md5

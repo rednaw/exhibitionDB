@@ -6,7 +6,8 @@ on:
     branches:
       - main
     paths:
-      - _data/**
+      - '_data/**'
+      - 'bin/**'
   workflow_dispatch:
 jobs:
   build:
