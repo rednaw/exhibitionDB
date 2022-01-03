@@ -28,12 +28,12 @@ where
   and e.ID_Esposizioni = ae.ID_Esposizione
   and o.ID_Artisti = a.ID_Artisti
   and e.Anno_Esposizione != ''
-  and e.Titolo_Esposizione != '';
+  and e.Titolo_Esposizione != ''
+limit 600000;
 
 DROP TABLE Città;
 DROP TABLE Opere_no_img;
 DROP TABLE Artisti_esposti;
-DROP TABLE Ubicazioni;
 DROP TABLE Artisti;
 DROP TABLE Opere_Esposte;
 DROP TABLE Esposizioni;

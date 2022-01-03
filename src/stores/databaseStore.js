@@ -21,7 +21,7 @@ export const queries = readable(null, function start(set) {
       'database': 'Artic'
     },
     'ExhibitionDB': {
-      'query': 'select * from exhibitions limit 2000000',
+      'query': 'select * from exhibitions',
       'database': 'ExhibitionDB'
     }
   })
