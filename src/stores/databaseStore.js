@@ -21,22 +21,7 @@ export const queries = readable(null, function start(set) {
       'database': 'Artic'
     },
     'ExhibitionDB': {
-      'query': `select
-                  e.Anno_Esposizione as Anno,
-                  e.Titolo_Esposizione as Titolo,
-                  u.Luogo_Espositivo || ' ' || c.Città_visione || ' ' || c.Nazione as Luogo,
-                  a.Nome || ' ' || a.Cognome || ' (' || a."Nato il" || '-' || a."Morto il" || ')' as Artista                  
-                from
-                  Artisti a,
-                  Artisti_esposti ae,
-                  Ubicazioni u,
-                  Esposizioni e,
-                  Città c
-                where
-                  e.ID_Ubicazioni = u.ID_Ubicazioni
-                  and u.ID_Città = c.ID_Città
-                  and a.ID_Artisti = ae.ID_Artista
-                  and e.ID_Esposizioni = ae.ID_Esposizione`,
+      'query': 'select * from exhibitions limit 2000000',
       'database': 'ExhibitionDB'
     }
   })
@@ -91,8 +76,6 @@ async function loadDatabase(DBname) {
 }
 
 async function runQueryImpl(dbImage, query) {
-  console.log('runQueryImpl')
-  console.log(dbImage)
   if (dbImage) {
     try {
       // eslint-disable-next-line no-undef
