@@ -55,18 +55,20 @@ export const queryResult =
   asyncable(
     async ($database, $query) => {
       if ($database && $query) { // TODO: figure out better way to only update when both are triggered.
-        const keys = await localforage_js.keys()
-        const key = queryResultsKey($database)
-        if (!keys.includes(key)) {
-          const result = await runQueryImpl($query['database'], $query['query'])
-          if (result) {
-            localforage_js.setItem(key, result)
-          }
-          return result
+        const dbName = $query['database']
+        const checksumKey = dbName + '.md5'
+        const checksumPromise = await fetch('./data/' + checksumKey, { cache: 'no-store' })
+        const actualChecksumValue = await checksumPromise.text()
+        const expectedChecksumValue = await localforage_js.getItem(checksumKey)
+        if (actualChecksumValue != expectedChecksumValue) {
+          const dbImage = await loadDatabase($query['database'])
+          localforage_js.setItem(checksumKey, actualChecksumValue)
+          localforage_js.setItem(dbName, dbImage)
+          return runQueryImpl(dbImage, $query['query'])
+        } else {
+          const dbImage = await localforage_js.getItem(dbName)
+          return runQueryImpl(dbImage, $query['query'])
         }
-        return localforage_js.getItem(key)
-      } else {
-        return null
       }
     },
     null,
@@ -75,11 +77,24 @@ export const queryResult =
 
 // private 
 
-async function runQueryImpl(DBname, query) {
+async function loadDatabase(DBname) {
   if (DBname) {
     try {
-      const response = await fetch(databaseFile(DBname), { cache: 'no-store' })
-      const dbImage = new Uint8Array(await response.arrayBuffer())
+      const databaseFile = './data/' + DBname + '.sqlite3'
+      const response = await fetch(databaseFile, { cache: 'no-store' })
+      return new Uint8Array(await response.arrayBuffer())
+    } catch (error) {
+      console.log(error)
+      return null
+    }
+  }
+}
+
+async function runQueryImpl(dbImage, query) {
+  console.log('runQueryImpl')
+  console.log(dbImage)
+  if (dbImage) {
+    try {
       // eslint-disable-next-line no-undef
       const SQL = await initSqlJs({
         // eslint-disable-next-line no-unused-vars
@@ -93,14 +108,6 @@ async function runQueryImpl(DBname, query) {
       return null
     }
   }
-}
-
-function databaseFile(name) {
-  return `./data/${name}.sqlite3`
-}
-
-function queryResultsKey(name) {
-  return `${name}.results`
 }
 
 function transform(sqlQueryOutput) {
