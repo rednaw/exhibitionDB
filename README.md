@@ -15,6 +15,12 @@ With this app you can create your own art gallery with artworks from various mus
 
 The web app is deployed at https://rednaw.github.io/exhibitionDB/.
 
+## Use case diagram
+
+Currently the app implements the following use cases.
+
+![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Gallery_usecase.iuml)
+
 ## Implementation
 
 The main purpose of this project is to investigate how to build a web application that
