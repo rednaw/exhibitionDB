@@ -1,17 +1,17 @@
 @startuml Gallery_usecase
 left to right direction
 skinparam packageStyle rectangle
-actor Customer
+actor User
 actor "Museum API" as museum
 rectangle "ExhibitionDB" {
-  Customer -- (View gallery)
+  User -- (View gallery)
   (View gallery) <. (Remove image from gallery)
-  Customer -- (Browse museum collection)
+  User -- (Browse museum collection)
   (View artwork details) .> (Browse museum collection)
   (View artwork details) -- museum
   (Add artwork image to gallery) .> (View artwork details)
   (Browse museum collection) -- museum
-  Customer -- (Browse exhibitions)
+  User -- (Browse exhibitions)
   (Browse exhibitions) -- museum
   (View exhibition details) .> (Browse exhibitions)
   (View exhibition details) -- museum
