@@ -1,11 +1,11 @@
 [
   {
-    "url": "http://localhost:46517/index.html",
+    "url": "http://localhost:33195/index.html",
     "isRepresentativeRun": true,
     "htmlPath": "/home/runner/work/exhibitionDB/exhibitionDB/lighthouse/report.html",
     "jsonPath": "/home/runner/work/exhibitionDB/exhibitionDB/lighthouse/report.json",
     "summary": {
-      "performance": 0.79,
+      "performance": 0.78,
       "accessibility": 1,
       "best-practices": 1,
       "seo": 1
