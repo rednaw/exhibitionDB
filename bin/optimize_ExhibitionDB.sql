@@ -29,7 +29,7 @@ where
   and o.ID_Artisti = a.ID_Artisti
   and e.Anno_Esposizione != ''
   and e.Titolo_Esposizione != ''
-limit 600000;
+  and e.Anno_Esposizione < '1900';
 
 DROP TABLE Città;
 DROP TABLE Opere_no_img;
@@ -37,5 +37,6 @@ DROP TABLE Artisti_esposti;
 DROP TABLE Artisti;
 DROP TABLE Opere_Esposte;
 DROP TABLE Esposizioni;
+DROP TABLE Ubicazioni;
 
 VACUUM;
