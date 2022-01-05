@@ -18,7 +18,7 @@ With this app you can create your own art gallery with artworks from various mus
 The main purpose of this project is to investigate how to build a web application that
 - follows the [Jamstack architecture best practices](https://jamstack.org/) (in a nutshell: full CI/CD and no server side database).
 - handles a lot (tens of megabytes) of structured data.
-- performs very well according to measurement tools like [Lighthouse](https://developers.google.com/web/tools/lighthouse). 
+- performs well according to measurement tools like [Lighthouse](https://developers.google.com/web/tools/lighthouse). 
 
 Currently the web app is deployed at https://rednaw.github.io/exhibitionDB/.
 
