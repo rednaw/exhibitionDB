@@ -13,14 +13,22 @@ With this app you can create your own art gallery with artworks from various mus
 - [The Art Institute of Chicago API](https://api.artic.edu/docs/)
 - [Rijksmuseum API](https://data.rijksmuseum.nl/)
 
-The web app is deployed at https://rednaw.github.io/exhibitionDB/.
-
-## Implementation
+#### Why?
 
 The main purpose of this project is to investigate how to build a web application that
 - follows the [Jamstack architecture best practices](https://jamstack.org/) (in a nutshell: full CI/CD and no server side database).
 - handles a lot (tens of megabytes) of structured data.
-- performs very well according to measurement tools like [Lighthouse](https://developers.google.com/web/tools/lighthouse). 
+- performs well according to measurement tools like [Lighthouse](https://developers.google.com/web/tools/lighthouse). 
+
+Currently the web app is deployed at https://rednaw.github.io/exhibitionDB/.
+
+## Use case diagram
+
+At this moment the app implements the following use cases.
+
+![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Gallery_usecase.iuml)
+
+## Deployment diagram
 
 What follows is a diagram of the deployment architecture.
 
