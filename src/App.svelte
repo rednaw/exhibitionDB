@@ -2,6 +2,7 @@
   import Table from './Table.svelte';
   import Modal from 'svelte-simple-modal';
   import Gallery from './Gallery.svelte';
+  import ExhibitionWizard from './ExhibitionWizard.svelte';
   import { queries, database } from './stores/databaseStore.js';
 </script>
 
@@ -10,11 +11,14 @@
   {#each Object.keys($queries) as key}
     <a href="./#" on:click={() => database.set(key)}>{key}</a>
   {/each}
+  <a href="./#" on:click={() => database.set('Wizard')}>ExhibitionWizard</a>
 </div>
 <div class="main">
   <Modal>
     {#if $database == 'Gallery'}
       <Gallery />
+    {:else if $database == 'Wizard'}
+      <ExhibitionWizard />
     {:else}
       <Table />
     {/if}
