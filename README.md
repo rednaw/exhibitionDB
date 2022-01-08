@@ -49,6 +49,7 @@ What follows is a breakdown of the various technologies and projects on which th
 - [svelte-toggle](https://github.com/metonym/svelte-toggle): Accessible toggle switch component for Svelte.
 - [sql.js](https://github.com/sql-js/sql.js): A javascript SQL database, it allows creating a relational database and querying it entirely in the browser.
 - [Tabulator](http://tabulator.info/): Data visualisation using interactive tables.
+- [zip.js](https://gildas-lormeau.github.io/zip.js/): A JavaScript library to zip and unzip files in the browser and Deno.
 
 ### The Content Delivery Network
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Delivery.iuml)
@@ -63,6 +64,7 @@ What follows is a breakdown of the various technologies and projects on which th
 - [SQLite](https://www.sqlite.org/): SQLite is a C-language library that implements a small, fast, self-contained SQL database engine. 
 - [curl](https://curl.se/): Command line tool and library for transferring data with URLs
 - [csv-to-sqlite](https://github.com/zblesk/csv-to-sqlite):  A script that copies CSV files into a SQLite database. 
+- [zip](https://linux.die.net/man/1/zip): package and compress (archive) files
 #### Code pipeline
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/DeployPipeline.iuml) 
 - [npm](https://www.npmjs.com/): Javascript dependencymanager and script runner.

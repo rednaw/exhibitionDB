@@ -69,4 +69,6 @@ to_csv('artworks', ['id', 'image_id', 'title', 'artist_title', 'classification_t
 to_sqlite3('artworks')
 
 run('sqlite3 data/Artic.sqlite3 < bin/optimize_Artic.sql')
-run('md5sum data/Artic.sqlite3 > data/Artic.md5')
+run('zip data/Artic.sqlite3.zip data/Artic.sqlite3')
+run('rm data/Artic.sqlite3')
+run('md5sum data/Artic.sqlite3.zip > data/Artic.md5')

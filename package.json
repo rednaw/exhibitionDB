@@ -27,6 +27,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
+    "@zip.js/zip.js": "^2.3.23",
     "interactjs": "^1.10.11",
     "localforage": "^1.10.0",
     "sql-formatter": "^4.0.2",

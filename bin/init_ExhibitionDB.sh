@@ -9,5 +9,6 @@ for file in $(find _data -name "*.mer"); do
   rm data/$table.csv
 done
 
-sqlite3 data/ExhibitionDB.sqlite3 <bin/optimize_ExhibitionDB.sql
-md5sum data/ExhibitionDB.sqlite3 >data/ExhibitionDB.md5
+zip data/ExhibitionDB.sqlite3.zip data/ExhibitionDB.sqlite3
+rm data/ExhibitionDB.sqlite3
+md5sum data/ExhibitionDB.sqlite3.zip >data/ExhibitionDB.md5
