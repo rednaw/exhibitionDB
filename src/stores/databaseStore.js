@@ -1,6 +1,7 @@
 import localforage_js from 'localforage'
 import { readable, writable, derived } from 'svelte/store'
 import { asyncable } from 'svelte-asyncable'
+import * as zip from "@zip.js/zip.js"
 
 export const queries = readable(null, function start(set) {
   set({
@@ -21,10 +22,27 @@ export const queries = readable(null, function start(set) {
       'database': 'Artic'
     },
     'ExhibitionDB': {
-      'query': 'select * from exhibitions',
+      'query':
+        `select
+          e.Anno_Esposizione as Anno,
+          e.Titolo_Esposizione,
+          u.Luogo_Espositivo || ' ' || c.Città_visione || ' ' || c.Nazione as Luogo,
+          a.Nome || ' ' || a.Cognome || ' (' || a."Nato il" || '-' || a."Morto il" || ')' as Artista
+        from
+          Artisti a,
+          Ubicazioni u,
+          Esposizioni e,
+          Città c,
+          Artisti_esposti ae
+        where
+          e.ID_Ubicazioni = u.ID_Ubicazioni
+          and u.ID_Città = c.ID_Città
+          and a.ID_Artisti = ae.ID_Artista
+          and e.ID_Esposizioni = ae.ID_Esposizione`,
       'database': 'ExhibitionDB'
     }
   })
+
 
   return function stop() { }
 })
@@ -65,10 +83,14 @@ export const queryResult =
 async function loadDatabase(DBname) {
   if (DBname) {
     try {
-      const databaseFile = './data/' + DBname + '.sqlite3'
-      const response = await fetch(databaseFile, { cache: 'no-store' })
-      return new Uint8Array(await response.arrayBuffer())
+      const zipFileUrl = './data/' + DBname + '.sqlite3.zip'
+      const zipReader = new zip.ZipReader(new zip.HttpReader(zipFileUrl, { cache: 'no-store' }))
+      const entries = await zipReader.getEntries()
+      const data = await entries[0].getData(new zip.Uint8ArrayWriter())
+      await zipReader.close()
+      return data
     } catch (error) {
+      console.log('ERROR')
       console.log(error)
       return null
     }
@@ -87,6 +109,7 @@ async function runQueryImpl(dbImage, query) {
       const queryResult = db.exec(query)
       return transform(queryResult)
     } catch (error) {
+      console.log('ERROR')
       console.log(error)
       return null
     }
