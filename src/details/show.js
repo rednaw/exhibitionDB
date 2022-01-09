@@ -2,8 +2,8 @@ import ExhibitionDB from './ExhibitionDB.svelte'
 import Exhibition from './Exhibition.svelte'
 import Artwork from './Artwork.svelte'
 
-export function showPopup(open, database, data) {
-  switch (database) {
+export function showPopup(open, selectedMenuKey, data) {
+  switch (selectedMenuKey) {
     case 'Gallery':
       open(Artwork, {
         object: data,

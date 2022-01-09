@@ -36,8 +36,8 @@
           hideLabel="true"
           on:toggle={(e) => toggle(e.detail, metadata)}
           toggled={inGallery}
-          on="In gallery"
-          off="Not in gallery"
+          on="Toggle to remove from gallery"
+          off="Toggle to add to gallery"
         />
       </div>
     {/if}
