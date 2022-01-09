@@ -25,7 +25,6 @@
   selectedMenuResult.subscribe(async (dataPromise) => {
     dataPromise.then((data) => {
       if (data) {
-        columns = Object.keys(data[0]);
         table = new Tabulator(tableComponent, {
           data: data,
           reactiveData: true,
@@ -33,6 +32,9 @@
           autoColumns: true,
           autoColumnsDefinitions: function (definitions) {
             definitions.forEach((column) => {
+              if (hiddenColumns.includes(column.field)) {
+                column.visible = false;
+              }
               column.headerFilter = true;
             });
             return definitions;
@@ -42,14 +44,6 @@
           paginationSize: 20,
           paginationSizeSelector: [5, 10, 20, 50, 100],
         });
-        const actualColumns = Object.getOwnPropertyNames(
-          table.columnManager.columnsByField
-        );
-        for (const column of actualColumns) {
-          if (hiddenColumns.includes(column)) {
-            table.hideColumn(column);
-          }
-        }
       }
       table.on('rowClick', function (e, row) {
         showPopup(open, $selectedMenuKey, row.getData());
