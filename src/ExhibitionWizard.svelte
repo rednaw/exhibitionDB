@@ -21,6 +21,7 @@
   let selectedArtist;
   function artistSelected(event) {
     selectedArtist = event.detail;
+    console.log(selectedArtist);
   }
 </script>
 
@@ -28,12 +29,14 @@
   <Wizard>
     <WizardPage>
       <h1>Choose artist</h1>
-      <Select
-        loadOptions={artists}
-        optionIdentifier="id"
-        labelIdentifier="name"
-        on:select={artistSelected}
-      />
+      <div style="width: 25em;">
+        <Select
+          loadOptions={artists}
+          optionIdentifier="id"
+          labelIdentifier="name"
+          on:select={artistSelected}
+        />
+      </div>
       <br />
     </WizardPage>
     <WizardPage>
