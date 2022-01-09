@@ -11,12 +11,12 @@
     );
   }
 
-  async function exhibitions(filterText) {
-    return await runQuery(
-      'ExhibitionDB',
-      `select ID_Artisti as id, Nome || ' ' || Cognome as name from Artisti where name like '%${filterText}%' limit 1000`
-    );
-  }
+  // async function exhibitions(filterText) {
+  //   return await runQuery(
+  //     'ExhibitionDB',
+  //     `select ID_Artisti as id, Nome || ' ' || Cognome as name from Artisti where name like '%${filterText}%' limit 1000`
+  //   );
+  // }
 
   let selectedArtist;
   function artistSelected(event) {
