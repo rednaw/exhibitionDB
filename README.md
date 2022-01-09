@@ -45,12 +45,12 @@ What follows is a breakdown of the various technologies and projects on which th
 - [Javascript](https://javascript.info/): The only programming language that runs in all browsers.
 - [LocalForage](https://localforage.github.io/localForage/): Deal with getting and setting bulk data in the browser offline store.
 - [svelte-asyncable](https://github.com/sveltetools/svelte-asyncable): Super tiny, declarative, optimistic, async store for SvelteJS.
+- [svelte-select](https://github.com/rob-balfre/svelte-select): A select/autocomplete component for Svelte apps. 
 - [svelte-simple-modal](https://github.com/flekschas/svelte-simple-modal): A simple, small, and content-agnostic modal for Svelte.
 - [svelte-toggle](https://github.com/metonym/svelte-toggle): Accessible toggle switch component for Svelte.
 - [sql.js](https://github.com/sql-js/sql.js): A javascript SQL database, it allows creating a relational database and querying it entirely in the browser.
 - [Tabulator](http://tabulator.info/): Data visualisation using interactive tables.
 - [zip.js](https://gildas-lormeau.github.io/zip.js/): A JavaScript library to zip and unzip files in the browser and Deno.
-- [svelte-select](https://github.com/rob-balfre/svelte-select): A select/autocomplete component for Svelte apps. 
 
 ### The Content Delivery Network
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Delivery.iuml)
