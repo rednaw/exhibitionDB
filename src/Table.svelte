@@ -25,6 +25,7 @@
   selectedMenuResult.subscribe(async (dataPromise) => {
     dataPromise.then((data) => {
       if (data) {
+        columns = Object.keys(data[0]);
         table = new Tabulator(tableComponent, {
           data: data,
           reactiveData: true,
