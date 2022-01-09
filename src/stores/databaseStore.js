@@ -60,7 +60,7 @@ export async function runQuery(database, query) {
   const actualChecksumValue = await checksumPromise.text()
   const expectedChecksumValue = await localforage_js.getItem(checksumKey)
   if (actualChecksumValue != expectedChecksumValue) {
-    const dbImage = await loadDatabase(query)
+    const dbImage = await loadDatabase(database)
     localforage_js.setItem(checksumKey, actualChecksumValue)
     localforage_js.setItem(database, dbImage)
     return runQueryImpl(dbImage, query)
