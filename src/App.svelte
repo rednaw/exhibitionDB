@@ -3,21 +3,21 @@
   import Modal from 'svelte-simple-modal';
   import Gallery from './Gallery.svelte';
   import ExhibitionWizard from './ExhibitionWizard.svelte';
-  import { queries, database } from './stores/databaseStore.js';
+  import { menuEntries, selectedMenuKey } from './stores/menuStore.js';
 </script>
 
 <div class="navbar">
-  <b><a href="./#" on:click={() => database.set('Gallery')}>Home</a></b>
-  {#each Object.keys($queries) as key}
-    <a href="./#" on:click={() => database.set(key)}>{key}</a>
+  <b><a href="./#" on:click={() => selectedMenuKey.set('Gallery')}>Home</a></b>
+  {#each Object.keys($menuEntries) as key}
+    <a href="./#" on:click={() => selectedMenuKey.set(key)}>{key}</a>
   {/each}
-  <a href="./#" on:click={() => database.set('Wizard')}>ExhibitionWizard</a>
+  <a href="./#" on:click={() => selectedMenuKey.set('Wizard')}>ExhibitionDB2</a>
 </div>
 <div class="main">
   <Modal>
-    {#if $database == 'Gallery'}
+    {#if $selectedMenuKey == 'Gallery'}
       <Gallery />
-    {:else if $database == 'Wizard'}
+    {:else if $selectedMenuKey == 'Wizard'}
       <ExhibitionWizard />
     {:else}
       <Table />

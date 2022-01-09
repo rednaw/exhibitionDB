@@ -3,7 +3,11 @@
   import 'tabulator-tables/dist/css/tabulator.min.css';
   import { format } from 'sql-formatter';
   import { getContext } from 'svelte';
-  import { database, query, queryResult } from './stores/databaseStore.js';
+  import {
+    selectedMenuKey,
+    selectedMenuValue,
+    selectedMenuResult,
+  } from './stores/menuStore.js';
   import { showPopup } from './details/show.js';
 
   const hiddenColumns = ['id', 'image_url'];
@@ -18,7 +22,7 @@
   let table;
 
   // table data
-  queryResult.subscribe(async (dataPromise) => {
+  selectedMenuResult.subscribe(async (dataPromise) => {
     dataPromise.then((data) => {
       if (data) {
         columns = Object.keys(data[0]);
@@ -48,7 +52,7 @@
         }
       }
       table.on('rowClick', function (e, row) {
-        showPopup(open, $database, row.getData());
+        showPopup(open, $selectedMenuKey, row.getData());
       });
     });
   });
@@ -66,7 +70,7 @@
   }
 </script>
 
-<h2>{$database}</h2>
+<h2>{$selectedMenuKey}</h2>
 Group By
 <select bind:value={groupColumns[0]} on:change={handleGroupEvent}>
   <option value="" />
@@ -88,7 +92,7 @@ Group By
 <div bind:this={tableComponent} />
 <br /><br />
 <strong>Query: </strong>
-<pre>{$query ? format($query['query']) : ''}</pre>
+<pre>{$selectedMenuValue ? format($selectedMenuValue['query']) : ''}</pre>
 
 <style>
 </style>
