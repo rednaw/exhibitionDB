@@ -54,24 +54,27 @@ export const query = derived(
   ([$queries, $database]) => $queries[$database]
 )
 
+export async function runQuery(database, query) {
+  const checksumKey = database + '.md5'
+  const checksumPromise = await fetch('./data/' + checksumKey, { cache: 'no-store' })
+  const actualChecksumValue = await checksumPromise.text()
+  const expectedChecksumValue = await localforage_js.getItem(checksumKey)
+  if (actualChecksumValue != expectedChecksumValue) {
+    const dbImage = await loadDatabase(database)
+    localforage_js.setItem(checksumKey, actualChecksumValue)
+    localforage_js.setItem(database, dbImage)
+    return runQueryImpl(dbImage, query)
+  } else {
+    const dbImage = await localforage_js.getItem(database)
+    return runQueryImpl(dbImage, query)
+  }
+}
+
 export const queryResult =
   asyncable(
     async ($database, $query) => {
       if ($database && $query) { // TODO: figure out better way to only update when both are triggered.
-        const dbName = $query['database']
-        const checksumKey = dbName + '.md5'
-        const checksumPromise = await fetch('./data/' + checksumKey, { cache: 'no-store' })
-        const actualChecksumValue = await checksumPromise.text()
-        const expectedChecksumValue = await localforage_js.getItem(checksumKey)
-        if (actualChecksumValue != expectedChecksumValue) {
-          const dbImage = await loadDatabase($query['database'])
-          localforage_js.setItem(checksumKey, actualChecksumValue)
-          localforage_js.setItem(dbName, dbImage)
-          return runQueryImpl(dbImage, $query['query'])
-        } else {
-          const dbImage = await localforage_js.getItem(dbName)
-          return runQueryImpl(dbImage, $query['query'])
-        }
+        return runQuery($query['database'], $query['query'])
       }
     },
     null,
