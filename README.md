@@ -36,6 +36,9 @@ At this moment the app implements the following use cases.
 
 ## ER diagram
 
+Datamodel of the database based on FileMaker exports
+(not the databases created from Museum API's, those are separate and not integrated in this model yet)
+
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Datamodel.iuml)
 
 
