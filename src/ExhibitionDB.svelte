@@ -26,14 +26,18 @@
       'ExhibitionDB',
       `select distinct
         e.ID_Esposizioni as id,
-        e.Titolo_Esposizione as Title,
         e.Anno_Esposizione as Year,
-        e.Città as City
+        e.Titolo_Esposizione as Title,
+        u.Luogo_Espositivo as Place,
+        u.Città_visione as City,
+        u.Nazione as Country
        from
         Esposizioni e,
-        Artisti_esposti ae
+        Artisti_esposti ae,
+        Ubicazioni u
        where
         e.ID_Esposizioni = ae.ID_Esposizione and
+        e.ID_Ubicazioni = u.ID_Ubicazioni and
         ae.ID_Artista = ${artistID}`
     );
   }
@@ -42,8 +46,8 @@
     return await runQuery(
       'ExhibitionDB',
       `select
-        o.Titolo_Opera as Title,
         o.Anno_Opera as Year,
+        o.Titolo_Opera as Title,
         o.Dimensioni as Dimensions,
         o.Tecnica as Type
       from 
@@ -63,9 +67,12 @@
     exhibitions(artistID).then((exhibitions) => {
       const table = new Tabulator(exhibitionList, {
         data: exhibitions,
-        layout: 'fitDataStretch',
+        layout: 'fitColumns',
         autoColumns: true,
-        autoColumnsDefinitions: [{ field: 'id', visible: false }],
+        autoColumnsDefinitions: [
+          { field: 'id', visible: false },
+          { field: 'Year', width: '5em' },
+        ],
       });
       table.on('rowClick', function (e, row) {
         exhibitionSelected(row, artistID);
@@ -78,8 +85,9 @@
     exhibitionDetails(exhibitionID, artistID).then((details) => {
       new Tabulator(exhibitionView, {
         data: details,
-        layout: 'fitDataStretch',
+        layout: 'fitColumns',
         autoColumns: true,
+        autoColumnsDefinitions: [{ field: 'Year', width: '5em' }],
       });
     });
   }
