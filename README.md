@@ -22,6 +22,11 @@ The main purpose of this project is to investigate how to build a web applicatio
 
 Currently the web app is deployed at https://rednaw.github.io/exhibitionDB/.
 
+## Deployment diagram
+
+![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Architecture.iuml)
+
+
 ## Use case diagram
 
 At this moment the app implements the following use cases.
@@ -29,12 +34,7 @@ At this moment the app implements the following use cases.
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Gallery_usecase.iuml)
 
 
-## Deployment diagram
-
-![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Architecture.iuml)
-
-
-## Datamodel
+## ER diagram
 
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Datamodel.iuml)
 
