@@ -1,4 +1,3 @@
-import ExhibitionDB from './ExhibitionDB.svelte'
 import Exhibition from './Exhibition.svelte'
 import Artwork from './Artwork.svelte'
 
