@@ -28,6 +28,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
+    "@types/tabulator-tables": "^5.0.1",
     "@zip.js/zip.js": "^2.3.23",
     "interactjs": "^1.10.11",
     "localforage": "^1.10.0",

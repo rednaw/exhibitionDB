@@ -19,29 +19,8 @@ export const menuEntries = readable(null, function start(set) {
     'Artic exhibitions': {
       'query': 'select * from exhibitions',
       'database': 'Artic'
-    },
-    'ExhibitionDB': {
-      'query':
-        `select
-          e.Anno_Esposizione as Anno,
-          e.Titolo_Esposizione,
-          u.Luogo_Espositivo || ' ' || c.Città_visione || ' ' || c.Nazione as Luogo,
-          a.Nome || ' ' || a.Cognome || ' (' || a."Nato il" || '-' || a."Morto il" || ')' as Artista
-        from
-          Artisti a,
-          Ubicazioni u,
-          Esposizioni e,
-          Città c,
-          Artisti_esposti ae
-        where
-          e.ID_Ubicazioni = u.ID_Ubicazioni
-          and u.ID_Città = c.ID_Città
-          and a.ID_Artisti = ae.ID_Artista
-          and e.ID_Esposizioni = ae.ID_Esposizione`,
-      'database': 'ExhibitionDB'
     }
   })
-
 
   return function stop() { }
 })
