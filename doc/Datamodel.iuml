@@ -1,0 +1,68 @@
+@startuml
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "**Opere**" as opere {
+  *ID_Opere : number
+  --
+  *ID_Artisti: number <<FK>>
+  Anno_Opera : text
+  Dimensioni : text
+  Tecnica : text
+  Titolo_Opera: text
+}
+
+entity "**Ubicazioni**" as ubicazioni {
+  *ID_Ubicazioni : number
+  --
+  Luogo_Espositivo: text
+  Città_visione : text
+  Nazione: text
+}
+
+entity "**Artisti**" as artisti {
+  *ID_Artisti : number
+  --
+  Nome : text
+  Cognome: text
+  Pseudonimo: text
+  Nato a: text
+  Nato il: text
+  Morto a: text
+  Morto il: text
+}
+
+entity "**Esposizioni**" as esposizioni {
+  *ID_Esposizioni : number
+  --
+  *ID_Ubicazioni : number <<FK>>
+  Anno_Esposizione: text
+  Titolo_Esposizione: text
+  Note: text
+  Source: text
+}
+
+entity "**Artisti_esposti**" as ae {
+  *ID_Artista : number <<FK>>
+  *ID_Esposizione : number <<FK>>
+}
+
+entity "**Opere_Esposte**" as oe {
+  *ID_Esposizione : number <<FK>>
+  *ID_Opera : number <<FK>>
+}
+
+artisti ||--|{ opere
+ubicazioni ||--|{ esposizioni
+
+oe }|--|| opere
+esposizioni ||--|{ oe
+
+ae }|--|| artisti
+esposizioni ||--|{ ae
+
+@enduml

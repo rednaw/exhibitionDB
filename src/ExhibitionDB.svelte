@@ -75,13 +75,12 @@
         ],
       });
       table.on('rowClick', function (e, row) {
-        exhibitionSelected(row, artistID);
+        exhibitionSelected(row.getData().id, artistID);
       });
     });
   }
 
-  function exhibitionSelected(row, artistID) {
-    const exhibitionID = row.getData().id;
+  function exhibitionSelected(exhibitionID, artistID) {
     exhibitionDetails(exhibitionID, artistID).then((details) => {
       new Tabulator(exhibitionView, {
         data: details,

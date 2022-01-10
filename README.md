@@ -28,15 +28,20 @@ At this moment the app implements the following use cases.
 
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Gallery_usecase.iuml)
 
-## Deployment diagram
 
-What follows is a diagram of the deployment architecture.
+## Deployment diagram
 
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Architecture.iuml)
 
+
+## Datamodel
+
+![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/Datamodel.iuml)
+
+
 ## Supporting technologies
 
-What follows is a breakdown of the various technologies and projects on which this project depends ordered by where in the deployment overview they are used.
+A breakdown of the various technologies and projects on which this project depends ordered by where in the deployment overview they are used.
 
 ### The Browser
 ![main-components](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rednaw/exhibitionDB/main/doc/User.iuml)
