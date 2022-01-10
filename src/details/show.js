@@ -14,9 +14,6 @@ export function showPopup(open, selectedMenuKey, data) {
         }
       })
       break
-    case 'ExhibitionDB':
-      open(ExhibitionDB, { object: data })
-      break
     case 'Artic exhibitions':
       open(Exhibition, {
         object: data,
