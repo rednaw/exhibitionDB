@@ -8,17 +8,24 @@
   let exhibitionView;
 
   async function artists(filterText) {
-    return await runQuery(
-      'ExhibitionDB',
-      `select 
-        ID_Artisti as id, 
-        Nome || ' ' || Cognome as name
+    if (filterText.length >= 3) {
+      return await runQuery(
+        'ExhibitionDB',
+        `select 
+        a.ID_Artisti as id, 
+        a.Nome || ' ' || a.Cognome as name
       from 
-        Artisti 
+        Artisti a
       where 
-        name like '%${filterText}%'
-      limit 1000`
-    );
+        name like '%${filterText}%' and
+        exists (select * from Artisti_esposti ae where ae.ID_Artista = a.ID_Artisti)
+      limit 10`
+      );
+    } else {
+      return await new Promise((resolve) => {
+        resolve([]);
+      });
+    }
   }
 
   async function exhibitions(artistID) {
