@@ -34,7 +34,7 @@
     "localforage": "^1.10.0",
     "sql-formatter": "^4.0.2",
     "sql.js": "^1.6.2",
-    "svelte": "^3.45.0",
+    "svelte": "^3.46.1",
     "svelte-asyncable": "^2.0.4",
     "svelte-select": "^4.4.7",
     "svelte-simple-modal": "^1.2.0",
