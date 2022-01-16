@@ -15,5 +15,8 @@
     "exhibitions": "Mostre",
     "artworks": "Opere d'arte",
     "artist_name": "Nome dell'artista"
+  },
+  "table": {
+    "group_by": "Per riunire gruppi"
   }
 }
