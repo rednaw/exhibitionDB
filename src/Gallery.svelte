@@ -3,7 +3,7 @@
   import { getContext } from 'svelte';
   import { _ } from './services/i18n';
   import { gallery } from './stores/galleryStore.js';
-  import * as interactable from './interactable.js';
+  import * as interactable from './services/interactable.js';
   import { showPopup } from './details/show.js';
 
   const { open } = getContext('simple-modal');
