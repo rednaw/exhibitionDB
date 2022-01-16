@@ -1,0 +1,19 @@
+{
+  "app": {
+    "gallery": "Gallery"
+  },
+  "gallery": {
+    "welcome": "Welcome to ExhibitionDB",
+    "introduction": "Create your own art gallery",
+    "step_1": "Select a museum from the top menu",
+    "step_2": "Browse the museum artworks using the interactive table",
+    "step_3": "Select artworks to add them to your collection",
+    "step_4": "Your gallery will appear here"
+  },
+  "exhibitiondb": {
+    "artist": "Artist",
+    "exhibitions": "Exhibitions",
+    "artworks": "Artworks",
+    "artist_name": "Artist name"
+  }
+}

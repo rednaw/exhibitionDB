@@ -1,31 +1,55 @@
 <script>
+  import { setupI18n, isLocaleLoaded, locale, dir } from './services/i18n';
+  import LocaleSelector from './LocaleSelector.svelte';
+  import { _ } from './services/i18n';
   import Table from './Table.svelte';
   import Modal from 'svelte-simple-modal';
   import Gallery from './Gallery.svelte';
   import ExhibitionDB from './ExhibitionDB.svelte';
   import { menuEntries, selectedMenuKey } from './stores/menuStore.js';
+
+  $: if (!$isLocaleLoaded) {
+    console.log(navigator.language);
+    setupI18n({ withLocale: 'en' });
+  }
+
+  $: {
+    document.dir = $dir;
+  }
 </script>
 
-<div class="navbar">
-  <a href="./#" on:click={() => selectedMenuKey.set('Gallery')}>Home</a>
-  {#each Object.keys($menuEntries) as key}
-    <a href="./#" on:click={() => selectedMenuKey.set(key)}>{key}</a>
-  {/each}
-  <a href="./#" on:click={() => selectedMenuKey.set('ExhibitionDB')}>
-    ExhibitionDB
-  </a>
-</div>
-<div class="main">
-  <Modal>
-    {#if $selectedMenuKey == 'Gallery'}
-      <Gallery />
-    {:else if $selectedMenuKey == 'ExhibitionDB'}
-      <ExhibitionDB />
-    {:else}
-      <Table />
-    {/if}
-  </Modal>
-</div>
+{#if $isLocaleLoaded}
+  <div class="navbar">
+    <a href="./#" on:click={() => selectedMenuKey.set('Gallery')}>
+      {$_('app.gallery')}
+    </a>
+    {#each Object.keys($menuEntries) as key}
+      <a href="./#" on:click={() => selectedMenuKey.set(key)}>{key}</a>
+    {/each}
+    <a href="./#" on:click={() => selectedMenuKey.set('ExhibitionDB')}>
+      ExhibitionDB
+    </a>
+    <div class="localeselector">
+      <LocaleSelector
+        value={$locale}
+        on:locale-changed={(e) => setupI18n({ withLocale: e.detail })}
+      />
+    </div>
+  </div>
+  <div class="main">
+    <Modal>
+      {#if $selectedMenuKey == 'Gallery'}
+        <Gallery />
+      {:else if $selectedMenuKey == 'ExhibitionDB'}
+        <ExhibitionDB />
+      {:else}
+        <Table />
+      {/if}
+    </Modal>
+  </div>
+{:else}
+  <p>Loading...</p>
+{/if}
 
 <style>
   .navbar {
@@ -49,6 +73,10 @@
   .navbar a:hover {
     background: #ddd;
     color: black;
+  }
+
+  .localeselector {
+    float: right;
   }
 
   .main {
