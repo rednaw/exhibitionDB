@@ -52,8 +52,9 @@ A breakdown of the various technologies and projects on which this project depen
 - [Interactjs](https://interactjs.io/): JavaScript drag and drop, resizing, and multi-touch gestures for modern browsers.
 - [Javascript](https://javascript.info/): The only programming language that runs in all browsers.
 - [LocalForage](https://localforage.github.io/localForage/): Deal with getting and setting bulk data in the browser offline store.
-- [svelte-asyncable](https://github.com/sveltetools/svelte-asyncable): Super tiny, declarative, optimistic, async store for SvelteJS.
-- [svelte-select](https://github.com/rob-balfre/svelte-select): A select/autocomplete component for Svelte apps. 
+- [svelte-asyncable](https://github.com/sveltetools/svelte-asyncable): Super tiny, declarative, optimistic, async store for Svelte.
+- [svelte-i18n](https://github.com/kaisermann/svelte-i18n) Internationalization library for Svelte.
+- [svelte-select](https://github.com/rob-balfre/svelte-select): A select/autocomplete component for Svelte. 
 - [svelte-simple-modal](https://github.com/flekschas/svelte-simple-modal): A simple, small, and content-agnostic modal for Svelte.
 - [svelte-toggle](https://github.com/metonym/svelte-toggle): Accessible toggle switch component for Svelte.
 - [sql.js](https://github.com/sql-js/sql.js): A javascript SQL database, it allows creating a relational database and querying it entirely in the browser.
