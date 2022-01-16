@@ -27,7 +27,7 @@ export const menuEntries = readable(null, function start(set) {
 
 export const selectedMenuKey = writable('Gallery')
 
-export const selectedMenuValue = derived(
+const selectedMenuValue = derived(
   [menuEntries, selectedMenuKey],
   ([$menuEntries, $selectedMenuKey]) => $menuEntries[$selectedMenuKey]
 )

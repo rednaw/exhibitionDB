@@ -1,13 +1,8 @@
 <script>
   import { TabulatorFull as Tabulator } from 'tabulator-tables';
   import 'tabulator-tables/dist/css/tabulator.min.css';
-  import { format } from 'sql-formatter';
   import { getContext } from 'svelte';
-  import {
-    selectedMenuKey,
-    selectedMenuValue,
-    selectedMenuResult,
-  } from './stores/menuStore.js';
+  import { selectedMenuKey, selectedMenuResult } from './stores/menuStore.js';
   import { showPopup } from './details/show.js';
 
   const hiddenColumns = ['id', 'image_url'];
@@ -85,9 +80,6 @@ Group By
 </select>
 <br /><br />
 <div bind:this={tableComponent} />
-<br /><br />
-<strong>Query: </strong>
-<pre>{$selectedMenuValue ? format($selectedMenuValue['query']) : ''}</pre>
 
 <style>
 </style>
