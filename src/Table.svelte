@@ -2,6 +2,7 @@
   import { TabulatorFull as Tabulator } from 'tabulator-tables';
   import 'tabulator-tables/dist/css/tabulator.min.css';
   import { getContext } from 'svelte';
+  import { _ } from './services/i18n';
   import { selectedMenuKey, selectedMenuResult } from './stores/menuStore.js';
   import { showPopup } from './details/show.js';
 
@@ -61,7 +62,7 @@
 </script>
 
 <h2>{$selectedMenuKey}</h2>
-Group By
+{$_('table.group_by')}
 <select bind:value={groupColumns[0]} on:change={handleGroupEvent}>
   <option value="" />
   {#each columns as column}

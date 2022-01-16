@@ -15,5 +15,8 @@
     "exhibitions": "Exhibitions",
     "artworks": "Artworks",
     "artist_name": "Artist name"
+  },
+  "table": {
+    "group_by": "Group by"
   }
 }
