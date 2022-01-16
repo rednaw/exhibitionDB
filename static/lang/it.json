@@ -1,0 +1,19 @@
+{
+  "app": {
+    "gallery": "Galleria"
+  },
+  "gallery": {
+    "welcome": "Benvenuto in ExhibitionDB",
+    "introduction": "Crea la tua galleria d'arte",
+    "step_1": "Seleziona un museo dal menu in alto",
+    "step_2": "Sfoglia le opere del museo utilizzando il tavolo interattivo",
+    "step_3": "Seleziona le opere d'arte per aggiungerle alla tua collezione",
+    "step_4": "La tua galleria apparirà qui"
+  },
+  "exhibitiondb": {
+    "artist": "Artista",
+    "exhibitions": "Mostre",
+    "artworks": "Opere d'arte",
+    "artist_name": "Nome dell'artista"
+  }
+}
