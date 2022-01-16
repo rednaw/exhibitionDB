@@ -2,6 +2,7 @@
   import { TabulatorFull as Tabulator } from 'tabulator-tables';
   import 'tabulator-tables/dist/css/tabulator.min.css';
   import Select from 'svelte-select';
+  import { _ } from './services/i18n';
   import { runQuery } from './stores/databaseStore.js';
 
   let exhibitionList;
@@ -100,21 +101,21 @@
 </script>
 
 <main>
-  <h4>Artist</h4>
+  <h4>{$_('exhibitiondb.artist')}</h4>
   <div style="width: 25em;">
     <Select
       loadOptions={artists}
       optionIdentifier="id"
       labelIdentifier="name"
-      placeholder="Artist name..."
+      placeholder="{$_('exhibitiondb.artist_name')}..."
       on:select={artistSelected}
     />
   </div>
   <br />
-  <h4>Exhibitions</h4>
+  <h4>{$_('exhibitiondb.exhibitions')}</h4>
   <div bind:this={exhibitionList} />
   <br />
-  <h4>Artworks</h4>
+  <h4>{$_('exhibitiondb.artworks')}</h4>
   <div bind:this={exhibitionView} />
 </main>
 

@@ -1,9 +1,11 @@
 <script>
   import { onMount } from 'svelte';
+  import { getContext } from 'svelte';
+  import { _ } from './services/i18n';
   import { gallery } from './stores/galleryStore.js';
   import * as interactable from './interactable.js';
-  import { getContext } from 'svelte';
   import { showPopup } from './details/show.js';
+
   const { open } = getContext('simple-modal');
 
   let galleryItems = [];
@@ -69,15 +71,15 @@
   </div>
 {:else}
   <div class="introduction">
-    <b>Welcome to ExhibitionDB</b>
+    <b>{$_('gallery.welcome')}</b>
     <br /><br />
-    Create your own art gallery:
+    {$_('gallery.introduction')}:
     <ol>
-      <li>Select a museum from the top menu.</li>
-      <li>Browse the museum artworks using the interactive table.</li>
-      <li>Select artworks to add them to your collection.</li>
+      <li>{$_('gallery.step_1')}.</li>
+      <li>{$_('gallery.step_2')}.</li>
+      <li>{$_('gallery.step_3')}.</li>
     </ol>
-    Your gallery will appear here.
+    {$_('gallery.step_4')}.
   </div>
 {/if}
 
