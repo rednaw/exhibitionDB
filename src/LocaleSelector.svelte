@@ -7,7 +7,6 @@
 
   function handleLocaleChange(event) {
     event.preventDefault();
-
     dispatch('locale-changed', event.target.value);
   }
 </script>

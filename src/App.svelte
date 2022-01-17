@@ -1,5 +1,5 @@
 <script>
-  import { setupI18n, isLocaleLoaded, locale, dir } from './services/i18n';
+  import { setupI18n, isLocaleLoaded, locale } from './services/i18n';
   import LocaleSelector from './LocaleSelector.svelte';
   import { _ } from './services/i18n';
   import Table from './Table.svelte';
@@ -9,12 +9,8 @@
   import { menuEntries, selectedMenuKey } from './stores/menuStore.js';
 
   $: if (!$isLocaleLoaded) {
-    console.log(navigator.language);
-    setupI18n({ withLocale: 'en' });
-  }
-
-  $: {
-    document.dir = $dir;
+    const preferred_language = navigator.language.split('-')[0];
+    setupI18n(preferred_language);
   }
 </script>
 
@@ -34,7 +30,7 @@
     <div class="localeselector">
       <LocaleSelector
         value={$locale}
-        on:locale-changed={(e) => setupI18n({ withLocale: e.detail })}
+        on:locale-changed={(e) => setupI18n(e.detail)}
       />
     </div>
   </div>

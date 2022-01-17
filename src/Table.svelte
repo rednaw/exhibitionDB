@@ -2,7 +2,7 @@
   import { TabulatorFull as Tabulator } from 'tabulator-tables';
   import 'tabulator-tables/dist/css/tabulator.min.css';
   import { getContext } from 'svelte';
-  import { _ } from './services/i18n';
+  import { _, locale } from './services/i18n';
   import { selectedMenuKey, selectedMenuResult } from './stores/menuStore.js';
   import { showPopup } from './details/show.js';
 
@@ -27,6 +27,7 @@
           reactiveData: true,
           layout: 'fitDataStretch',
           autoColumns: true,
+          locale: $locale,
           autoColumnsDefinitions: function (definitions) {
             definitions.forEach((column) => {
               if (hiddenColumns.includes(column.field)) {
@@ -40,6 +41,21 @@
           pagination: 'local',
           paginationSize: 20,
           paginationSizeSelector: [5, 10, 20, 50, 100],
+          langs: {
+            it: {
+              groups: {
+                item: 'oggetto',
+                items: 'oggetti',
+              },
+              pagination: {
+                page_size: 'Dimensioni',
+                first: 'Prima',
+                last: 'Ultimo',
+                prev: 'Precedente',
+                next: 'Prossima',
+              },
+            },
+          },
         });
       }
       table.on('rowClick', function (e, row) {
