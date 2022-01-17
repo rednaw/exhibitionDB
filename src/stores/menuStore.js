@@ -4,19 +4,19 @@ import { runQuery } from './databaseStore'
 
 export const menuEntries = readable(null, function start(set) {
   set({
-    'Artic artworks': {
+    'menu.artic_artworks': {
       'query': 'select * from artworks',
       'database': 'Artic'
     },
-    'Metropolitan artworks': {
+    'menu.metropolitan_artworks': {
       'query': 'select * from MetObjects',
       'database': 'Metropolitan'
     },
-    'Rijksmuseum artworks': {
+    'menu.rijksmuseum_artworks': {
       'query': 'select * from collection',
       'database': 'Rijksmuseum'
     },
-    'Artic exhibitions': {
+    'menu.artic_exhibitions': {
       'query': 'select * from exhibitions',
       'database': 'Artic'
     }

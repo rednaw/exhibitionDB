@@ -21,10 +21,12 @@
 {#if $isLocaleLoaded}
   <div class="navbar">
     <a href="./#" on:click={() => selectedMenuKey.set('Gallery')}>
-      {$_('app.gallery')}
+      {$_('menu.gallery')}
     </a>
     {#each Object.keys($menuEntries) as key}
-      <a href="./#" on:click={() => selectedMenuKey.set(key)}>{key}</a>
+      <a href="./#" on:click={() => selectedMenuKey.set(key)}>
+        {$_(key)}
+      </a>
     {/each}
     <a href="./#" on:click={() => selectedMenuKey.set('ExhibitionDB')}>
       ExhibitionDB

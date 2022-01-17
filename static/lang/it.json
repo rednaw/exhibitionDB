@@ -1,7 +1,13 @@
 {
   "app": {
-    "gallery": "Galleria",
     "download": "Scarica"
+  },
+  "menu": {
+    "gallery": "Galleria",
+    "artic_artworks": "Opere Artic",
+    "metropolitan_artworks": "Opere Metropolitan",
+    "rijksmuseum_artworks": "Opere Rijksmuseum",
+    "artic_exhibitions": "Mostre Artic"
   },
   "gallery": {
     "welcome": "Benvenuto in ExhibitionDB",
