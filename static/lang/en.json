@@ -1,7 +1,13 @@
 {
   "app": {
-    "gallery": "Gallery",
     "download": "Download"
+  },
+  "menu": {
+    "gallery": "Gallery",
+    "artic_artworks": "Artic artworks",
+    "metropolitan_artworks": "Metropolitan artworks",
+    "rijksmuseum_artworks": "Rijksmuseum artworks",
+    "artic_exhibitions": "Artic exhibitions"
   },
   "gallery": {
     "welcome": "Welcome to ExhibitionDB",
