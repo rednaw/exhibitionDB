@@ -101,21 +101,21 @@
 </script>
 
 <main>
-  <h4>{$_('exhibitiondb.artist')}</h4>
+  <h4>{$_('table.artist')}</h4>
   <div style="width: 25em;">
     <Select
       loadOptions={artists}
       optionIdentifier="id"
       labelIdentifier="name"
-      placeholder="{$_('exhibitiondb.artist_name')}..."
+      placeholder="{$_('table.artist_name')}..."
       on:select={artistSelected}
     />
   </div>
   <br />
-  <h4>{$_('exhibitiondb.exhibitions')}</h4>
+  <h4>{$_('table.exhibitions')}</h4>
   <div bind:this={exhibitionList} />
   <br />
-  <h4>{$_('exhibitiondb.artworks')}</h4>
+  <h4>{$_('table.artworks')}</h4>
   <div bind:this={exhibitionView} />
 </main>
 

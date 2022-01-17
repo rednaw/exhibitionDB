@@ -1,6 +1,7 @@
 {
   "app": {
-    "gallery": "Galleria"
+    "gallery": "Galleria",
+    "download": "Scarica"
   },
   "gallery": {
     "welcome": "Benvenuto in ExhibitionDB",
@@ -10,13 +11,21 @@
     "step_3": "Seleziona le opere d'arte per aggiungerle alla tua collezione",
     "step_4": "La tua galleria apparirà qui"
   },
-  "exhibitiondb": {
-    "artist": "Artista",
-    "exhibitions": "Mostre",
-    "artworks": "Opere d'arte",
-    "artist_name": "Nome dell'artista"
-  },
   "table": {
-    "group_by": "Per riunire gruppi"
+    "artist": "Artista",
+    "artworks": "Opere d'arte",
+    "artist_name": "Nome dell'artista",
+    "catalogue": "Catalogo",
+    "date": "Data",
+    "exhibitions": "Mostre",
+    "group_by": "Per riunire gruppi",
+    "start_date": "Data d'inizio",
+    "end_date": "Data di fine",
+    "title": "Titolo",
+    "type": "Genere"
+  },
+  "dialog": {
+    "toggle_add": "Attiva per aggiungere alla galleria",
+    "toggle_remove": "Disattiva per rimuovere dalla galleria"
   }
 }

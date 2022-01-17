@@ -1,6 +1,7 @@
 <script>
   import Toggle from 'svelte-toggle';
   import { gallery, addItem, removeItem } from '../stores/galleryStore.js';
+  import { _ } from '../services/i18n';
 
   export let object;
   export let metadata;
@@ -35,8 +36,8 @@
         hideLabel="true"
         on:toggle={(e) => toggle(e.detail, metadata)}
         toggled={inGallery}
-        on="Toggle to remove from gallery"
-        off="Toggle to add to gallery"
+        on={$_('dialog.toggle_remove')}
+        off={$_('dialog.toggle_add')}
       />
     </div>
 
@@ -50,24 +51,24 @@
       </div>
       <div class="right_column">
         <p>
-          <strong>Title:</strong>
+          <strong>{$_('table.title')}:</strong>
           {metadata.core.title}
         </p>
         <p>
-          <strong>Artist:</strong>
+          <strong>{$_('table.artist')}:</strong>
           {metadata.core.artist}
         </p>
         <p>
-          <strong>Type:</strong>
+          <strong>{$_('table.type')}:</strong>
           {metadata.core.type}
         </p>
         <p>
-          <strong>Date:</strong>
+          <strong>{$_('table.date')}:</strong>
           {metadata.core.date}
         </p>
       </div>
     </div>
-    <pre>{JSON.stringify(metadata, undefined, 2)}</pre>
+    <!-- <pre>{JSON.stringify(metadata, undefined, 2)}</pre> -->
   {/await}
 {:catch error}
   <p style="color: red">{error.message}</p>

@@ -1,6 +1,7 @@
 <script>
   import Toggle from 'svelte-toggle';
   import { gallery, addItem, removeItem } from '../stores/galleryStore.js';
+  import { _ } from '../services/i18n';
 
   export let object;
   export let metadata;
@@ -36,8 +37,8 @@
           hideLabel="true"
           on:toggle={(e) => toggle(e.detail, metadata)}
           toggled={inGallery}
-          on="Toggle to remove from gallery"
-          off="Toggle to add to gallery"
+          on={$_('dialog.toggle_remove')}
+          off={$_('dialog.toggle_add')}
         />
       </div>
     {/if}
@@ -53,24 +54,25 @@
       {/if}
       <div class="right_column">
         <p>
-          <strong>Title:</strong>
+          <strong>{$_('table.title')}:</strong>
           {metadata.core.title}
         </p>
         <p>
-          <strong>Start date:</strong>
+          <strong>{$_('table.start_date')}:</strong>
           {metadata.core.start_at}
         </p>
         {#if metadata.core.end_at}
           <p>
-            <strong>End date:</strong>
+            <strong>{$_('table.end_date')}:</strong>
             {metadata.core.end_at}
           </p>
         {/if}
         {#if metadata.core.catalogue == 'yes'}
           <p>
-            <strong>Catalogue: </strong><a href={metadata.core.catalogue_url}
-              >download</a
-            >
+            <strong>{$_('table.catalogue')}:</strong>
+            <a href={metadata.core.catalogue_url}>
+              {$_('app.download')}
+            </a>
           </p>
         {/if}
       </div>
