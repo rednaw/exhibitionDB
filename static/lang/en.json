@@ -1,6 +1,7 @@
 {
   "app": {
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "download": "Download"
   },
   "gallery": {
     "welcome": "Welcome to ExhibitionDB",
@@ -10,13 +11,21 @@
     "step_3": "Select artworks to add them to your collection",
     "step_4": "Your gallery will appear here"
   },
-  "exhibitiondb": {
-    "artist": "Artist",
-    "exhibitions": "Exhibitions",
-    "artworks": "Artworks",
-    "artist_name": "Artist name"
-  },
   "table": {
-    "group_by": "Group by"
+    "artist": "Artist",
+    "artworks": "Artworks",
+    "artist_name": "Artist name",
+    "catalogue": "Catalogue",
+    "date": "Date",
+    "exhibitions": "Exhibitions",
+    "group_by": "Group by",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "title": "Title",
+    "type": "Type"
+  },
+  "dialog": {
+    "toggle_add": "Toggle to add to gallery",
+    "toggle_remove": "Toggle to remove from gallery"
   }
 }
