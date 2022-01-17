@@ -61,7 +61,7 @@
   }
 </script>
 
-<h2>{$selectedMenuKey}</h2>
+<h2>{$_($selectedMenuKey)}</h2>
 {$_('table.group_by')}
 <select bind:value={groupColumns[0]} on:change={handleGroupEvent}>
   <option value="" />
