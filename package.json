@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@types/tabulator-tables": "^5.0.1",
-    "@zip.js/zip.js": "^2.3.23",
+    "@zip.js/zip.js": "^2.3.24",
     "interactjs": "^1.10.11",
     "localforage": "^1.10.0",
     "sql.js": "^1.6.2",
