@@ -38,7 +38,9 @@
         e.Titolo_Esposizione as Title,
         u.Luogo_Espositivo as Place,
         u.Città_visione as City,
-        u.Nazione as Country
+        u.Nazione as Country,
+        e.Num_Opere_per_Esp as Works,
+        e.Num_Artisti_per_Esp as Artist,
        from
         Esposizioni e,
         Artisti_esposti ae,
