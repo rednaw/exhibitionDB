@@ -57,10 +57,10 @@
             },
           },
         });
+        table.on('rowClick', function (e, row) {
+          showPopup(open, $selectedMenuKey, row.getData());
+        });
       }
-      table.on('rowClick', function (e, row) {
-        showPopup(open, $selectedMenuKey, row.getData());
-      });
     });
   });
 

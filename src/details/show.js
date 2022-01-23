@@ -3,35 +3,31 @@ import Artwork from './Artwork.svelte'
 
 export function showPopup(open, selectedMenuKey, data) {
   switch (selectedMenuKey) {
-    case 'Gallery':
+    case 'menu.gallery':
       open(Artwork, {
         object: data,
         metadata: () => defaultMetadata(data)
-      }, {}, {
-        onClosed: () => {
-          console.log('modal window closed')
-        }
       })
       break
-    case 'Artic exhibitions':
+    case 'menu.artic_exhibitions':
       open(Exhibition, {
         object: data,
         metadata: () => articExhibitionsMetadata(data)
       })
       break
-    case 'Metropolitan artworks':
+    case 'menu.metropolitan_artworks':
       open(Artwork, {
         object: data,
         metadata: () => metropolitanMetadata(data)
       })
       break
-    case 'Artic artworks':
+    case 'menu.artic_artworks':
       open(Artwork, {
         object: data,
         metadata: () => articArtworksMetadata(data)
       })
       break
-    case 'Rijksmuseum artworks':
+    case 'menu.rijksmuseum_artworks':
       open(Artwork, {
         object: data,
         metadata: () => defaultMetadata(data)
