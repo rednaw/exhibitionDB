@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DIRECTORY=$(dirname $0)
+
 for file in $(find _data -name "*.mer"); do
   table=$(basename $file .mer)
   echo
@@ -11,4 +13,4 @@ done
 
 zip data/ExhibitionDB.sqlite3.zip data/ExhibitionDB.sqlite3
 rm data/ExhibitionDB.sqlite3
-md5sum data/ExhibitionDB.sqlite3.zip >data/ExhibitionDB.md5
+$DIRECTORY/checksum.sh data/ExhibitionDB.sqlite3.zip >data/ExhibitionDB.md5
