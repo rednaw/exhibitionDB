@@ -33,7 +33,7 @@
     "interactjs": "^1.10.11",
     "localforage": "^1.10.0",
     "sql.js": "^1.6.2",
-    "svelte": "^3.46.2",
+    "svelte": "^3.46.4",
     "svelte-asyncable": "^2.0.4",
     "svelte-i18n": "^3.3.13",
     "svelte-select": "^4.4.7",
