@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📂 Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Node
         uses: actions/setup-node@v2
@@ -36,7 +36,7 @@ jobs:
           npm run build
 
       - name: Get database
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: data-branch
           path: data
