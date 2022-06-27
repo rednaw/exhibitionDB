@@ -33,7 +33,7 @@ jobs:
           ./bin/initdb.sh
 
       - name: 🚀 Deploy to data branch
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
           branch: data-branch
           folder: data

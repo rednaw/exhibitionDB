@@ -71,7 +71,7 @@ jobs:
           custom_opts: --baseurl /exhibitionDB
 
       - name: 🚀 Deploy to production
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
           branch: gh-pages
           folder: _site
